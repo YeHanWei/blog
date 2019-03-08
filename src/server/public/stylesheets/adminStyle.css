@@ -1,0 +1,33 @@
+html{
+    height: 100%;
+}
+body{
+    background-color: #EEEEEE;
+    height: inherit;
+}
+#admin-app{
+    height: inherit;
+}
+.content-box{
+    padding: 20px 10px 0 370px;
+    overflow: auto;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+}
+.table-header th{
+    font-size: 18px;
+    color: rgba(10,10,10,0.7);
+}
+.control-btn{
+    padding: 1px;
+    font-size: 10px;
+    border: 1px solid rgba(0, 0, 255, 0.6);
+}
+.item-name{
+    display: inline-block;
+    padding: 2px 0 10px 2px
+}
+.item-font td{
+    font-size: 16px;
+}
