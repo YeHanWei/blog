@@ -1,7 +1,6 @@
 // 博客页面，页面请求路由
 
 import express from 'express'
-import db from '../../modules/db/index'
 
 const blogRouter = express.Router();
 
