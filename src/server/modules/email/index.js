@@ -1,6 +1,6 @@
 import email from 'nodemailer'
 // import db from '../db/index'
-import op from '../db/modelOprate/index'
+import op from '../db/index'
 import emsg from './message'
 
 /**

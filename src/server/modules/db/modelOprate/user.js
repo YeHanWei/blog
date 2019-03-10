@@ -1,4 +1,4 @@
-const model = require('../model');
+const model = require('../models/model');
 const {connection} = require('../models/connection');
 
 module.exports = {

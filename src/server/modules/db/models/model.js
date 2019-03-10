@@ -1,10 +1,10 @@
-const TagArticles = require('./models/tag_articles')
-const Users = require('./models/user')
-const Articles = require('./models/articles')
-const Drafts = require('./models/draft')
-const FriendlyLinks = require('./models/friendly_links')
-const Tags = require('./models/tags')
-const Comments = require('./models/comments')
+const TagArticles = require('./tag_articles')
+const Users = require('./user')
+const Articles = require('./articles')
+const Drafts = require('./draft')
+const FriendlyLinks = require('./friendly_links')
+const Tags = require('./tags')
+const Comments = require('./comments')
 
 module.exports = {
   Users: Users,

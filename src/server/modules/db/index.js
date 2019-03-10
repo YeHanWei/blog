@@ -1,9 +1,9 @@
-import user from './user'
-import article from './article'
-import tag from './tag'
-import friendlyLink from './friendlyLink'
-import draft from './draft'
-import comment from './comment'
+import user from './modelOprate/user'
+import article from './modelOprate/article'
+import tag from './modelOprate/tag'
+import friendlyLink from './modelOprate/friendlyLink'
+import draft from './modelOprate/draft'
+import comment from './modelOprate/comment'
 
 module.exports = {
   blogInit: user.blogInit,

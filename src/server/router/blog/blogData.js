@@ -1,7 +1,7 @@
 // 博客页面数据请求路由
 import express from 'express'
 import email from '../../modules/email/index'
-import op from '../../modules/db/modelOprate/index'
+import op from '../../modules/db/index'
 
 const blogData = express.Router();
 

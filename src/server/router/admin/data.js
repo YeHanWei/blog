@@ -1,6 +1,6 @@
 import express from 'express'
 import email from '../../modules/email/index'
-import op from '../../modules/db/modelOprate/index'
+import op from '../../modules/db/index'
 
 
 const dataRouter = express.Router();

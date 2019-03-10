@@ -1,6 +1,6 @@
 import tool from "../tools";
 
-const model = require('../model')
+const model = require('../models/model')
 const {connection, TYPE} = require('../models/connection')
 
 let {Comments} = model;
