@@ -4,32 +4,40 @@
       <div class="form-group">
         <label for="title" class="control-label">标题：</label>
         <span class="err" v-show="titleIsNull">*标题不能为空</span>
-        <div>
+        <div class="col-md-12">
           <input id="title" class="form-control" autocomplete="off" v-model="title"/>
         </div>
       </div>
       <div class="form-group">
         <label for="content" class="control-label">正文：</label>
         <span class="err" v-show="mdIsNull">*文章内容不能为空</span>
-        <mark-down id="content" :mode="3" :initialValue="md" v-on:on-save="getContent"></mark-down>
+        <div class="col-md-12">
+          <mark-down class="col-md-12" id="content" :mode="3" :initialValue="md" v-on:on-save="getContent"></mark-down>
+        </div>
       </div>
       <div class="form-group">
         <label for="tags" class="control-label">标签：</label><small>标签之间使用“;”隔开，至少1个，最多5个</small>
         <span class="err" v-show="tagsIsErr">*标签数量不正确</span>
-        <input id="tags" type="text" class="form-control" autocomplete="off" v-model="tags"/>
+        <div class="col-md-12">
+          <input id="tags" type="text" class="form-control" autocomplete="off" v-model="tags"/>
+        </div>
       </div>
       <div class="form-group">
         <label for="summary">摘要：</label>
         <span class="err" v-show="summaryIsNull">*摘要不能为空</span>
-        <div>
+        <div class="col-md-12">
           <textarea id="summary" rows="3" class="form-control" v-model="summary"></textarea>
         </div>
       </div>
       <p class="err err-right" v-show="isPublicErr">*文章发布失败</p>
       <p class="err err-right" v-show="isSaveErr">*保存失败</p>
       <div class="form-group">
-        <button class="btn btn-success col-md-offset-10" type="button" v-on:click="saveDraft">保存</button>
-        <button class="btn btn-success" type="button" v-on:click="publicArticle">发布</button>
+        <div class="col-md-offset-8 col-md-2">
+          <button class="btn btn-success btn-block" type="button" v-on:click="saveDraft">保存</button>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-success btn-block" type="button" v-on:click="publicArticle">发布</button>
+        </div>
       </div>
     </form>
   </div>

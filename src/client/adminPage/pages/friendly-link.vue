@@ -51,7 +51,9 @@
           </div>
           <p v-show="iserr">*错误！请检查表单是否为空，或友链是否已存在！</p>
           <div class="form-group">
-            <button class="col-md-1 col-md-offset-10 btn btn-success" type="button" @click="addFriendlyLink">保存</button>
+            <div class="col-md-2 col-md-offset-9">
+              <button class="btn btn-success btn-block" type="button" @click="addFriendlyLink">保存</button>
+            </div>
           </div>
         </form>
       </div>

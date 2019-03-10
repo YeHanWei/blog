@@ -1,12 +1,12 @@
 import mysql from 'mysql'
-import config from './db.json'
-import SQL from './sqlOprate/SQL'
-import article from './sqlOprate/article'
-import tag from './sqlOprate/tag'
-import friendlyLink from './sqlOprate/friendlyLInk'
-import comment from './sqlOprate/comment'
-import aboutMe from './sqlOprate/aboutMe'
-import draft from './sqlOprate/draft'
+import config from '../db.json'
+import SQL from './SQL'
+import article from './article'
+import tag from './tag'
+import friendlyLink from './friendlyLInk'
+import comment from './comment'
+import aboutMe from './aboutMe'
+import draft from './draft'
 
 module.exports = {
   blogInit: blogInit,

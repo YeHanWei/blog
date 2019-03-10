@@ -43,7 +43,9 @@
           </div>
           <p v-show="iserr">*错误！请检查是否为空或标签是否存在！</p>
           <div class="form-group">
-            <button class="btn btn-success col-md-1 col-md-offset-10" type="button" @click="addTag">保存</button>
+            <div class="col-md-2 col-md-offset-9">
+              <button class="btn btn-success btn-block" type="button" @click="addTag">保存</button>
+            </div>
           </div>
         </form>
       </div>
