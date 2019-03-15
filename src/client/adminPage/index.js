@@ -9,6 +9,7 @@ Vue.config.productionTip = false
 Vue.use(vueResource)
 Vue.use(Vuex)
 
+// VueX 状态管理
 const store = new Vuex.Store({
   state: {
     article_id: '',
