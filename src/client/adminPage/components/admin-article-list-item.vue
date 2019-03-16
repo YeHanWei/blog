@@ -1,7 +1,7 @@
 <template>
   <tr class="item-font">
     <td>
-      <a class="item-name" :href="'/article?article_id=' + articleId.toString()" target="_self">{{articleTitle}}</a>
+      <a class="item-name" :href="'/article?article_id=' + articleId.toString()" target="_blank">{{articleTitle}}</a>
       <br/>
       <button class="btn btn-default control-btn" @click="update">更新</button>
       <button class="btn btn-default control-btn" data-toggle="modal" :data-target="$data._deleteModalID">删除</button>

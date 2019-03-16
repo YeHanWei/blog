@@ -2,7 +2,7 @@
   <tr class="item-font">
     <td>
       <span class="item-name">{{commentContent}}</span><br/>
-      <span>on&nbsp;</span><a class="item-name" :href="'/article?article_id=' + articleId.toString()" target="_self">{{articleTitle}}</a>
+      <span>on&nbsp;</span><a class="item-name" :href="'/article?article_id=' + articleId.toString()" target="_blank">{{articleTitle}}</a>
     </td>
     <td>
       <span class="item-name">{{commentAuthor}}</span><br/>
