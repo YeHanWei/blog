@@ -1,62 +1,44 @@
 <template>
   <div id="menu">
-    <ul class="nav nav-tabs nav-stacked top-level">
-      <li>
-        <a data-toggle="collapse" href="#articleList">
-          <span class="glyphicon glyphicon-align-right"></span>
-          &nbsp;文章管理
-        </a>
-        <ul id="articleList" class="nav collapse in two-level">
-          <li>
-            <router-link to="/admin/articleList">
-              <span class="glyphicon glyphicon-list-alt"></span>
-              &nbsp;文章列表
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/admin/newArticle">
-              <span class="glyphicon glyphicon-pencil"></span>
-              &nbsp;新建文章
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/admin/draftBox">
-              <span class="glyphicon glyphicon-tasks"></span>
-              &nbsp;草稿箱
-            </router-link>
-          </li>
-        </ul>
+    <ul class="top-level">
+      <li @click="clickArticleList">
+        <span class="glyphicon glyphicon-align-right"></span>
+        &nbsp;文章管理
       </li>
-      <li>
-        <router-link to="/admin/comments">
-          <span class="glyphicon glyphicon-comment"></span>
-          &nbsp;评论管理
+      <ul :style="{display: display}" class="two-level">
+        <router-link tag="li" to="/admin/articleList">
+          <span class="glyphicon glyphicon-list-alt"></span>
+          &nbsp;文章列表
         </router-link>
-      </li>
-      <li>
-        <router-link to="/admin/tags">
-          <span class="glyphicon glyphicon-tags"></span>
-          &nbsp;标签管理
+        <router-link tag="li" to="/admin/newArticle">
+          <span class="glyphicon glyphicon-pencil"></span>
+          &nbsp;新建文章
         </router-link>
-      </li>
-      <li>
-        <router-link to="/admin/friendlyLink">
-          <span class="glyphicon glyphicon-link"></span>
-          &nbsp;友链管理
+        <router-link tag="li" to="/admin/draftBox">
+          <span class="glyphicon glyphicon-tasks"></span>
+          &nbsp;草稿箱
         </router-link>
-      </li>
-      <li>
-        <router-link to="/admin/config">
-          <span class="glyphicon glyphicon-wrench"></span>
-          &nbsp;参数设置
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/admin/aboutMe">
-          <span class="glyphicon glyphicon-exclamation-sign"></span>
-          &nbsp;关于我
-        </router-link>
-      </li>
+      </ul>
+      <router-link tag="li" to="/admin/comments">
+        <span class="glyphicon glyphicon-comment"></span>
+        &nbsp;评论管理
+      </router-link>
+      <router-link tag="li" to="/admin/tags">
+        <span class="glyphicon glyphicon-tags"></span>
+        &nbsp;标签管理
+      </router-link>
+      <router-link tag="li" to="/admin/friendlyLink">
+        <span class="glyphicon glyphicon-link"></span>
+        &nbsp;友链管理
+      </router-link>
+      <router-link tag="li" to="/admin/config">
+        <span class="glyphicon glyphicon-wrench"></span>
+        &nbsp;参数设置
+      </router-link>
+      <router-link tag="li" to="/admin/aboutMe">
+        <span class="glyphicon glyphicon-exclamation-sign"></span>
+        &nbsp;关于我
+      </router-link>
     </ul>
   </div>
 </template>
@@ -66,6 +48,28 @@
     name: 'admin-menu',
     data() {
       return {
+        display: 'block'
+      }
+    },
+    methods: {
+      // 展开、关闭文章管理选项卡列表
+      clickArticleList: function() {
+        if (this.display === 'block') {
+          this.display = 'none'
+        } else {
+          this.display = 'block'
+        }
+      }
+    },
+    mounted: function () {
+      let lis = document.getElementsByTagName('li')
+      for (let i = 0; i < lis.length; i++) {
+        lis[i].onclick = function () {
+          for (let j = 0; j < lis.length; j++) {
+            lis[j].style.background = '#111'
+          }
+          this.style.background = '#555'
+        }
       }
     }
   }
@@ -81,22 +85,27 @@
   overflow: auto;
 }
 .top-level{
-  padding: 20px 0 20px 20px;
+  padding: 20px 0 20px 0px;
   font-size: 20px;
   border-bottom: 1px solid #111111;
+  list-style: none;
 }
-.top-level li a{
+.top-level li{
   color: #EEEEEE;
-  padding: 15px 3px;
+  padding: 15px 3px 15px 20px;
   cursor: pointer;
+  transition: background 0.5s;
+  -webkit-transition: background 0.5s;
 }
-.top-level li a:hover{
-  background-color: #555;
-  border: 1px solid #111111;
-  border-radius: 0;
+.top-level li:hover{
+  background-color: #666 !important;
 }
-.two-level li a{
-  padding-left: 40px;
+.two-level{
+  list-style: none;
+  padding: 0;
+}
+.two-level li{
+  padding-left: 60px;
   border: 1px solid #111;
 }
 
