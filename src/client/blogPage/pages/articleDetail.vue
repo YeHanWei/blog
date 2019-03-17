@@ -17,9 +17,9 @@
           </div>
         </section>
         <!-- 文章摘要 -->
-        <section class="content">
+        <summary class="content">
           <span style="font-weight: bold">摘要：</span><span>{{article.article_summary}}</span>
-        </section>
+        </summary>
         <!-- 文章正文 -->
         <article class="content" v-html="article.article_html"></article>
       </article>
