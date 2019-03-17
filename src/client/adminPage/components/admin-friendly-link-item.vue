@@ -65,7 +65,7 @@
         </div>
       </div>
     </td>
-    <td>{{linkUrl}}</td>
+    <td><a :href="linkUrl" target="_blank">{{linkUrl}}</a></td>
     <td>{{linkDescription}}</td>
   </tr>
 </template>
