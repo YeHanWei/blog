@@ -1,6 +1,3 @@
-
-
-
 module.exports = {
   createIdAadTime: createIdAadTime,
   handleResult: handleResult
