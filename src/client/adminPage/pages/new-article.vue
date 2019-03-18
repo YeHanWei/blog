@@ -50,12 +50,12 @@
     components: {MarkDown},
     data() {
       return {
-        id: this.$store.state.article_id,
-        title: this.$store.state.article_title,
-        md: this.$store.state.article_md,   // 文章内容，md格式
-        html: this.$store.state.article_html, // 文章内容，HTML格式
-        summary: this.$store.state.article_summary,
-        tags: this.$store.state.article_tag,
+        id: this.$store.state.article.article_id,
+        title: this.$store.state.article.article_title,
+        md: this.$store.state.article.article_md,   // 文章内容，md格式
+        html: this.$store.state.article.article_html, // 文章内容，HTML格式
+        summary: this.$store.state.article.article_summary,
+        tags: this.$store.state.article.article_tag,
         // 状态
         titleIsNull: false,
         mdIsNull: false,
@@ -137,7 +137,7 @@
       }
     },
     beforeDestroy: function () {
-      this.$store.commit('clearStates')
+      this.$store.commit('article/clearStates')
     }
   }
 </script>

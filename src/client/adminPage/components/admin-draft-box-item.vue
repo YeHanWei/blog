@@ -45,12 +45,12 @@
     methods: {
       edit: function () {
         this.$http.post('/data/getDraft', {draft_id: this.message.draft_id}).then(res => {
-          this.$store.commit('article_id', res.body.rows[0].draft_id)
-          this.$store.commit('article_title', res.body.rows[0].draft_title)
-          this.$store.commit('article_md', res.body.rows[0].draft_content)
-          this.$store.commit('article_summary', res.body.rows[0].draft_summary)
-          this.$store.commit('article_tag', res.body.rows[0].draft_tags)
-          this.$store.commit('isUpdate', true)
+          this.$store.commit('article/article_id', res.body.rows[0].draft_id)
+          this.$store.commit('article/article_title', res.body.rows[0].draft_title)
+          this.$store.commit('article/article_md', res.body.rows[0].draft_content)
+          this.$store.commit('article/article_summary', res.body.rows[0].draft_summary)
+          this.$store.commit('article/article_tag', res.body.rows[0].draft_tags)
+          this.$store.commit('article/isUpdate', true)
           this.$router.push('/admin/newArticle')
         })
       },

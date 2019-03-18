@@ -97,16 +97,17 @@
       },
       update() {
         this.$http.post('/data/getArticle', {article_id: this.articleId}).then(res => {
-          this.$store.commit('article_id', res.body.rows.article_id)
-          this.$store.commit('article_title', res.body.rows.article_title)
-          this.$store.commit('article_md', res.body.rows.article_md)
-          this.$store.commit('article_html', res.body.rows.article_html)
-          this.$store.commit('article_summary', res.body.rows.article_summary)
-          this.$store.commit('article_tag', res.body.rows.article_tags.join(';'))
-          this.$store.commit('isUpdate', true)
+          this.$store.commit('article/article_id', res.body.rows.article_id)
+          this.$store.commit('article/article_title', res.body.rows.article_title)
+          this.$store.commit('article/article_md', res.body.rows.article_md)
+          this.$store.commit('article/article_html', res.body.rows.article_html)
+          this.$store.commit('article/article_summary', res.body.rows.article_summary)
+          this.$store.commit('article/article_tag', res.body.rows.article_tags.join(';'))
+          this.$store.commit('article/isUpdate', true)
           this.$router.push('/admin/newArticle')
         })
       },
+      // 评论按钮点击事件，加载评论
       getComments() {
         this.$http.post('/data/commentsList', {article_id: this.articleId}).then(res => {
           this.getListErr = res.body.getListErr
@@ -118,16 +119,6 @@
         })
       }
     }
-  //   created: function () {
-  //   this.$http.post('/data/commentsList', {article_id: this.articleId}).then(res => {
-  //     this.getListErr = res.body.getListErr
-  //     if (this.getListErr === false) {
-  //       this.commentsList = res.body.rows
-  //     }
-  //   }, res => {
-  //     this.getListErr = true
-  //   })
-  // }
   }
 </script>
 
