@@ -20,15 +20,15 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/admin/login',
+      path: '/login',
       component: Login
     },
     {
-      path: '/admin/finePwd',
+      path: '/finePwd',
       component: FinePwd
     },
     {
-      path: '/admin/init',
+      path: '/init',
       component: Init
     },
     {
