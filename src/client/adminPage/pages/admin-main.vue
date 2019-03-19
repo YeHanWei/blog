@@ -5,17 +5,25 @@
       <div style="flex: 1;">
         <router-view></router-view>
       </div>
-      <!--<blog-footer></blog-footer>-->
     </div>
   </div>
 </template>
 
 <script>
   import AdminMenu from '../components/admin-menu'
-  // import BlogFooter from '../../blogPage/components/blog-footer'
   export default {
     name: 'admin-main',
-    components: {AdminMenu}
+    components: {AdminMenu},
+    data() {
+      return {}
+    },
+    created: function() {
+      if (!this.getCookie('session')) {
+        this.$router.push('/login')
+      } else {
+        this.$router.push(window.location.pathname)
+      }
+    }
   }
 </script>
 

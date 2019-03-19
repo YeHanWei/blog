@@ -3,15 +3,6 @@ import express from 'express'
 const adminRouter = express.Router();
 
 /* GET home page. */
-adminRouter.get('/login', function(req, res, next) {
-  res.render('admin-index');
-});
-adminRouter.get('/finePwd', function(req, res, next) {
-  res.render('admin-index');
-});
-adminRouter.get('/init', function(req, res, next) {
-  res.render('admin-index');
-});
 adminRouter.get('/', function(req, res, next) {
   res.render('admin-index');
 });

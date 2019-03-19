@@ -20,7 +20,7 @@
           </div>
           <p v-show="iserr">*账号与密码不匹配</p>
           <div style="float: right">
-            <span>忘记密码？<router-link to="/admin/finePwd">找回密码</router-link></span><br/>
+            <span>忘记密码？<router-link to="/finePwd">找回密码</router-link></span><br/>
           </div>
           <div class="form-group" style="float: right;clear: both">
             <button class="btn btn-success" type="button" v-on:click="login">登陆</button>
@@ -56,7 +56,8 @@
             this.account = ''
             this.password = ''
           } else {
-            window.location = '/admin/articleList'
+            this.setCookie('session', this.account, 100)
+            this.$router.push('/admin')
           }
         })
       }

@@ -1,13 +1,22 @@
 // 博客页面，页面请求路由
 
 import express from 'express'
+// import adminRouter from "../admin/adminRouter";
 
 const blogRouter = express.Router();
-
-/* GET home page. */
-blogRouter.get('/', function(req, res, next) {
-  res.render('blog-index', { title: 'fineCook' })
+/* 登陆 */
+blogRouter.get('/login', function(req, res, next) {
+  res.render('admin-index');
 });
+/* 找回密码 */
+blogRouter.get('/finePwd', function(req, res, next) {
+  res.render('admin-index');
+});
+/* 初始化 */
+blogRouter.get('/init', function(req, res, next) {
+  res.render('admin-index');
+});
+/* GET home page. */
 blogRouter.get('/', function(req, res, next) {
   res.render('blog-index', { title: 'fineCook' })
 });

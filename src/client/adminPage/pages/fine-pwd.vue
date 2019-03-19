@@ -41,7 +41,7 @@
               <button class="btn btn-success" type="button" v-on:click="findPwd">提交</button>
             </div>
             <div class="col-md-3">
-              <router-link to="/admin/login">
+              <router-link to="/login">
                 <button class="btn btn-primary" type="button">
                 返回登陆
                 </button>
