@@ -207,6 +207,10 @@ function getArticleDetail(id) {
         // 获取文章评论
         Comments.findAll({where: {article_id: id}}).then(rows => {
           article.comments = tool.handleResult(rows);
+          // 删除评论的email信息，以防泄露
+          for(let i = 0; i < article.comments.length; i++) {
+            delete article.comments[i].email
+          }
           // 增加阅读量
           Articles.update({
             article_views: ++article.article_views

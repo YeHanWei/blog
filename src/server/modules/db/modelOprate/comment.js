@@ -43,6 +43,11 @@ function getComments(article_id) {
   });// promise
 }
 
+/**
+ * 删除评论
+ * @param id 评论id
+ * @return {Promise<boolean>} 操作状态，成功：false；失败：true
+ */
 function deleteComment(id) {
   return new Promise((resolve, reject) => {
     Comments.destroy({where: {comment_id: id}}).then(() => {
@@ -56,10 +61,15 @@ function deleteComment(id) {
   })
 }
 
+/**
+ * 发表评论
+ * @param obj 评论内容及详细信息
+ * @return {Promise<boolean>} 操作状态，成功：false；失败：true
+ */
 function publicComment(obj) {
   return new Promise((resolve, reject) => {
     let comment_id = tool.createIdAadTime().id;
-    let comment_time = tool.createIdAadTime().date;
+    let comment_time = tool.createIdAadTime().time;
     Comments.create({
       comment_id: comment_id,
       article_id: obj.article_id,
