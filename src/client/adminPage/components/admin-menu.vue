@@ -39,6 +39,9 @@
         <span class="glyphicon glyphicon-exclamation-sign"></span>
         &nbsp;关于我
       </router-link>
+      <div class="btn-container">
+        <button class="btn btn-default btn-block" @click="logout">退出登陆</button>
+      </div>
     </ul>
   </div>
 </template>
@@ -59,6 +62,10 @@
         } else {
           this.display = 'block'
         }
+      },
+      logout: function() {
+        this.delCookie('session', 0)
+        this.$router.push('/login')
       }
     },
     mounted: function () {
@@ -85,7 +92,7 @@
   overflow: auto;
 }
 .top-level{
-  padding: 20px 0 20px 0px;
+  padding: 20px 0 20px 0;
   font-size: 20px;
   border-bottom: 1px solid #111111;
   list-style: none;
@@ -108,6 +115,10 @@
   padding-left: 60px;
   border: 1px solid #111;
 }
-
-
+.btn-container {
+  padding: 10px 20px 10px 20px;
+}
+.btn-container button{
+  font-size: 20px;
+}
 </style>

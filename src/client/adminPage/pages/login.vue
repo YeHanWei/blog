@@ -56,7 +56,7 @@
             this.account = ''
             this.password = ''
           } else {
-            this.setCookie('session', this.account, 100)
+            this.setCookie('session', this.account, 60 * 60 * 2)
             this.$router.push('/admin')
           }
         })

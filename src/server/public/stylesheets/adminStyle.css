@@ -8,13 +8,6 @@ body{
 #admin-app{
     height: inherit;
 }
-.content-box{
-    padding: 20px 10px 0 370px;
-    overflow: auto;
-    height: inherit;
-    display: flex;
-    flex-direction: column;
-}
 .table-header th{
     font-size: 18px;
     color: rgba(10,10,10,0.7);
