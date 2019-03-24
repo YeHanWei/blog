@@ -181,7 +181,6 @@ function getArchive() {
   return new Promise((resolve, reject) => {
     Articles.findAll({attributes: ['article_id', 'article_title', 'article_time']}).then(rows => {
       let result = tool.handleResult(rows);
-      console.log(result)
       resolve(result)
     }).catch(err => {
       throw err;

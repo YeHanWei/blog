@@ -99,7 +99,6 @@ function getTagArticles() {
         "where articles.article_id=tag_articles.article_id and tag_articles.tag_id=?;", {
         replacements: [tagsArray[index].tag_id], type: TYPE.QueryTypes.SELECT
       }).then(articles => {
-        console.log(articles);
         resultArray.push({tag_name: tagsArray[index].tag_name, articles: articles});
         return getArticle(resultArray, ++index, tagsArray, sucCallback, errCallback);
       }).catch(err => {
