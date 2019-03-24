@@ -13,8 +13,8 @@
     name: 'follow-mouse',
     mounted: function () {
       function follow (oEvent, dom, size, color, delay) {
-        let scrollleft = document.documentElement.scrollLeft || document.body.scrollLeft
-        let scrolltop = document.documentElement.scrollTop || document.body.scrollTop
+        let scrollleft = document.documentElement.clientLeft || document.body.clientLeft
+        let scrolltop = document.documentElement.clientTop || document.body.clientTop
         dom.style.width = size + 'px'
         dom.style.height = size + 'px'
         dom.style.background = color
@@ -43,7 +43,7 @@
 <style scoped>
   .move{
     border-radius: 50%;
-    position: absolute;
+    position: fixed;
     z-index: -1;
   }
 </style>
