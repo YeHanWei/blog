@@ -93,16 +93,14 @@ function updateTag(tag) {
 
 function getTagArticles() {
   // 内部函数，获取标签对应的文章
-  function getArticle(resultArray, index, tagsArray, sucCallback, errCallback) {
+  function getArticle(resultArray, index, tagsArray, sucCallback) {
     if (index < tagsArray.length) {
       connection.query( "select articles.article_id, articles.article_title from articles, tag_articles " +
         "where articles.article_id=tag_articles.article_id and tag_articles.tag_id=?;", {
         replacements: [tagsArray[index].tag_id], type: TYPE.QueryTypes.SELECT
       }).then(articles => {
         resultArray.push({tag_name: tagsArray[index].tag_name, articles: articles});
-        return getArticle(resultArray, ++index, tagsArray, sucCallback, errCallback);
-      }).catch(err => {
-        errCallback(err)
+        return getArticle(resultArray, ++index, tagsArray, sucCallback);
       })
     } else {
       sucCallback();
@@ -115,8 +113,6 @@ function getTagArticles() {
       getArticle(tagArticles, 0, result,
         () => {
           resolve(tagArticles)
-        }, (err) => {
-          throw err
         });
     }).catch(err => {
       throw err;
