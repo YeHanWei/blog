@@ -216,17 +216,9 @@ function getArticleDetail(id) {
             article_views: ++article.article_views
           }, {where: {article_id: id}} ).then(() => {
             resolve(article);
-          }).catch(err => {
-            throw err;
           })
-        }).catch(err => {
-          throw err;
         })
-      }).catch(err => {
-        throw err;
       })
-    }).catch(err => {
-      throw err;
     })
   })
 }
