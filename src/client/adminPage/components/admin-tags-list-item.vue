@@ -131,6 +131,10 @@
 </script>
 
 <style scoped>
+  tr{
+    transition: background 0.7s;
+    -webkit-transition: background 0.5s;
+  }
   tr:hover{
     background-color: rgba(200, 200, 200, 0.6);
   }
