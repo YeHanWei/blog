@@ -1,5 +1,5 @@
 <template>
-  <a href="#">
+  <a href="#"  v-bind:style="{display: disp}">
     <button class="btn btn-default">
       <span class="glyphicon glyphicon-arrow-up"></span>
     </button>
@@ -8,7 +8,21 @@
 
 <script>
   export default {
-    name: 'to-top'
+    name: 'to-top',
+    data() {
+      return {
+        sWidth: window.innerWidth
+      }
+    },
+    computed: {
+      disp: function () {
+        if (this.sWidth < 768) {
+          return 'none'
+        } else {
+          return 'inline-block'
+        }
+      }
+    }
   }
 </script>
 
