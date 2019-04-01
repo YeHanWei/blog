@@ -16,8 +16,7 @@
           </thead>
           <tbody>
           <admin-friendly-link-item
-                  v-on:getFriendlyLinkList="getFriendlyLinkList"
-            v-for="friendlyLinkItem in friendlyLinkList"
+            v-for="friendlyLinkItem in this.$store.state.friendlyLink.friendlyLinkList"
             v-bind:message="friendlyLinkItem"
             v-bind:key="friendlyLinkItem.link_name + friendlyLinkItem.link_url + friendlyLinkItem.link_description"
           ></admin-friendly-link-item>
@@ -69,7 +68,6 @@
     data() {
       return {
         getListErr: false,
-        friendlyLinkList: [], // 保存友链列表
         linkName: '',
         linkUrl: '',
         linkDescription: '',
@@ -99,31 +97,27 @@
               // 获取友链列表
               this.$http.get('/data/friendlyLinkList').then((res) => {
                 this.getListErr = res.body.getListErr
-                this.friendlyLinkList = res.body.rows
+                this.$store.commit('friendlyLink/friendlyLinkList', res.body.rows)
               })
             }
           }, res => {
             this.iserr = true
           })
         }
-      },
-
-      // 响应子组件事件，更新友链列表
-      getFriendlyLinkList(list) {
-        this.friendlyLinkList = list
       }
     },
 
     created: function() {
       // 获取友链列表
-      this.$http.get('/data/friendlyLinkList').then((res) => {
-        this.getListErr = res.body.getListErr
-        this.friendlyLinkList = res.body.rows
-      },
-        (res) => {
-          this.getListErr = true
-        }
-      )
+      if (this.$store.state.friendlyLink.friendlyLinkList.length === 0) {
+        this.$http.get('/data/friendlyLinkList').then((res) => {
+          this.getListErr = res.body.getListErr
+          this.$store.commit('friendlyLink/friendlyLinkList', res.body.rows)
+        },
+          (res) => {
+            this.getListErr = true
+          })
+      }
     }
   }
 

@@ -3,6 +3,7 @@ import VueX from 'vuex'
 import article from './modules/article/index'
 import tag from './modules/tag/index'
 import comment from './modules/comment/index'
+import friendlyLink from './modules/friendlyLink/index'
 
 Vue.use(VueX)
 
@@ -10,6 +11,7 @@ export default new VueX.Store({
   modules: {
     article: article,
     tag: tag,
-    comment: comment
+    comment: comment,
+    friendlyLink: friendlyLink
   }
 })

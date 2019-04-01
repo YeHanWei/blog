@@ -103,7 +103,7 @@
           if (this.deleteErr === false) {
             // 获取友链列表
             this.$http.get('/data/friendlyLinkList').then((res) => {
-              this.$emit('getFriendlyLinkList', res.body.rows)
+              this.$store.commit('friendlyLink/friendlyLinkList', res.body.rows)
             })
           }
         }, res => {
@@ -126,7 +126,7 @@
             if (this.updateErr === false) {
               // 获取友链列表
               this.$http.get('/data/friendlyLinkList').then((res) => {
-                this.$emit('getFriendlyLinkList', res.body.rows)
+                this.$store.commit('friendlyLink/friendlyLinkList', res.body.rows)
               })
             }
           }, res => {
