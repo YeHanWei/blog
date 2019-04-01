@@ -14,8 +14,7 @@
           </thead>
           <tbody>
             <admin-tags-list-item
-                    v-on:getTagList="getTagList"
-                    v-for="tagMessage in tagsList"
+                    v-for="tagMessage in this.$store.state.tag.tagList"
                     v-bind:message="tagMessage"
                     v-bind:key="tagMessage.tag_id + tagMessage.tag_name + tagMessage.tag_description"
             ></admin-tags-list-item>
@@ -61,7 +60,6 @@
     components: {AdminTagsListItem},
     data() {
       return {
-        tagsList: [], // 标签列表
         tag_name: '',
         tag_description: '',
         iserr: false
@@ -83,28 +81,27 @@
               // 刷新列表
               this.$http.get('/data/tagsList').then(
                 (res) => {
+                  // 清空输入框
                   this.tag_name = ''
                   this.tag_description = ''
-                  this.tagsList = res.body
+                  // 更新标签列表
+                  this.$store.commit('tag/tagList', res.body)
                 })
             }
           }, res => {
             this.iserr = true
           })
         }
-      },
-
-      // 接收子组件传递的值
-      getTagList: function(list) {
-        this.tagsList = list
       }
     },
     // 获取标签列表
     created: function () {
-      this.$http.get('/data/tagsList').then(
-      (res) => {
-        this.tagsList = res.body
-      })
+      if (this.$store.state.tag.tagList.length === 0) {
+        this.$http.get('/data/tagsList').then(
+          (res) => {
+            this.$store.commit('tag/tagList', res.body)
+          })
+      }
     }
   }
 </script>

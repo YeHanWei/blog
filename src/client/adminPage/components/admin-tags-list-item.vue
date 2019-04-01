@@ -83,20 +83,22 @@
       }
     },
     methods: {
+      // 删除标签
       deleteTag() {
         this.$http.post('/data/deleteTag', {tag_id: this.copyTagID}).then(res => {
           this.deleteErr = res.body.deleteErr
           if (this.deleteErr === false) {
             this.$http.get('/data/tagsList').then(
               (res) => {
-                // 向父主件传值
-                this.$emit('getTagList', res.body)
+                // 更新标签列表
+                this.$store.commit('tag/tagList', res.body)
               })
           }
         }, res => {
           this.deleteErr = true
         })
       },
+      // 修改更新标签信息
       updateTag() {
         this.updateErr = false
         if (this.copyTagName === '' || this.copyTagDescription === '') {
@@ -113,7 +115,7 @@
               this.$http.get('/data/tagsList').then(
                 (res) => {
                   // 向父主件传值
-                  this.$emit('getTagList', res.body)
+                  this.$store.commit('tag/tagList', res.body)
                 })
             }
           }, res => {
@@ -121,6 +123,7 @@
           })
         }
       },
+      // 关闭修改窗口，没有发生修改，复原copy*值
       closeUpdateTag() {
         this.copyTagID = this.message.tag_id
         this.copyTagName = this.message.tag_name
