@@ -103,7 +103,11 @@
             }).then((res) => {
               this.isPublicErr = res.body.isPublicErr
               if (this.isPublicErr === false) {
-                window.location = '/admin/articleList'
+                this.$http.get('/data/getArticle').then((res) => {
+                  this.iserr = res.body.iserr
+                  this.$store.commit('article/articleList', res.body.rows)
+                  this.$router.push('/admin/articleList')
+                })
               }
             }, (res) => {
               this.isPublicErr = true
@@ -125,6 +129,12 @@
             draft_tags: this.tags
           }).then((res) => {
             this.isSaveErr = res.body.isSaveErr
+            if (!this.isSaveErr) {
+              // 刷新草稿列表
+              this.$http.get('/data/draftList').then((res) => {
+                this.$store.commit('article/draftList', res.body.rows)
+              })
+            }
           }, (res) => {
             this.isSaveErr = true
           })

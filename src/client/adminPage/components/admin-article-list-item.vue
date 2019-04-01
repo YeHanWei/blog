@@ -89,7 +89,8 @@
         this.$http.post('/data/deleteArticle', {article_id: this.articleId}).then(res => {
           this.deleteErr = res.body.deleteErr
           if (this.deleteErr === false) {
-            window.location = '/admin/articleList'  // 刷新页面
+            // window.location = '/admin/articleList'  // 刷新页面
+            this.$store.commit('article/articleList', res.body.rows)
           }
         }, res => {
           this.deleteErr = true

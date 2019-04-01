@@ -205,7 +205,7 @@ dataRouter.post('/saveDraft', (req, res, next) => {
 // 获取草稿列表
 dataRouter.get('/draftList', function (req, res, next) {
   op.getDraftList().then(rows => {
-    res.send(rows)
+    res.send({rows: rows})
   });
 });
 

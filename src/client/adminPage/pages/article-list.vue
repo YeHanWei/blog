@@ -18,7 +18,7 @@
           <tbody>
           <!-- 文章列表内容 -->
           <admin-article-list-item
-            v-for="articleMessage in articleList"
+            v-for="articleMessage in this.$store.state.article.articleList"
             v-bind:message="articleMessage"
           ></admin-article-list-item>
           </tbody>
@@ -35,21 +35,21 @@
     name: 'article-list',
     data() {
       return {
-        articleList: [],
         iserr: false
       }
     },
     components: {AdminArticleListItem},
     created: function() {
       // 获取文章列表
-      this.$http.get('/data/getArticle').then((res) => {
-        this.iserr = res.body.iserr
-        this.articleList = res.body.rows
-      },
-        (res) => {
-          this.iserr = true
-        }
-      )
+      if (this.$store.state.article.articleList.length === 0) {
+        this.$http.get('/data/getArticle').then((res) => {
+          this.iserr = res.body.iserr
+          this.$store.commit('article/articleList', res.body.rows)
+        },
+          (res) => {
+            this.iserr = true
+          })
+      }
     }
   }
 </script>

@@ -6,5 +6,7 @@ export default {
   article_summary: '',
   article_tag: '',
   isUpdate: false,
-  isSave: false
+  isSave: false,
+  articleList: [],
+  draftList: []
 }

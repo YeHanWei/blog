@@ -32,5 +32,11 @@ export default {
   },
   isSave(state, isSave) {
     state.isSave = isSave
+  },
+  articleList(state, list) {
+    state.articleList = list
+  },
+  draftList(state, list) {
+    state.draftList = list
   }
 }

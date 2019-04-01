@@ -13,7 +13,7 @@
         </thead>
         <tbody>
           <admin-draft-box-item
-            v-for="draftItem in draftList"
+            v-for="draftItem in this.$store.state.article.draftList"
             v-bind:message="draftItem"
           ></admin-draft-box-item>
         </tbody>
@@ -27,15 +27,12 @@
   export default {
     name: 'draft-box',
     components: {AdminDraftBoxItem},
-    data() {
-      return {
-        draftList: []
-      }
-    },
     created: function () {
-      this.$http.get('/data/draftList').then((res) => {
-        this.draftList = res.body
-      })
+      if (this.$store.state.article.draftList.length === 0) {
+        this.$http.get('/data/draftList').then((res) => {
+          this.$store.commit('article/draftList', res.body.rows)
+        })
+      }
     }
   }
 </script>
