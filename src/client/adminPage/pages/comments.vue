@@ -4,8 +4,8 @@
       <h3>评论列表</h3>
     </div>
     <div class="panel-body">
-      <p v-show="getListErr">*数据获取失败，请刷新重试！</p>
-      <table class="table" v-show="!getListErr">
+      <p v-show="this.$store.state.comment.getListErr">*数据获取失败，请刷新重试！</p>
+      <table class="table" v-show="!this.$store.state.comment.getListErr">
         <thead>
         <tr class="table-header">
           <th style="width: 60%">评论内容</th>
@@ -15,7 +15,7 @@
         </thead>
         <tbody>
         <admin-comment-list-item
-                v-for="commentMessage in commentsList"
+                v-for="commentMessage in this.$store.state.comment.commentsList"
                 v-bind:message="commentMessage"
         ></admin-comment-list-item>
         </tbody>
@@ -29,22 +29,19 @@
   export default {
     name: 'comments',
     components: {AdminCommentListItem},
-    data() {
-      return {
-        commentsList: [],
-        getListErr: false
+    created: function () {
+      if (this.$store.state.comment.commentsList.length === 0) {
+        this.$http.get('/data/commentsList').then((res) => {
+          this.$store.commit('comment/getListErr', res.body.getListErr) // 更新错误状态
+          if (this.$store.state.comment.getListErr === false) {
+            // 更新评论列表
+            this.$store.commit('comment/commentsList', res.body.rows)
+          }
+        },
+          (res) => {
+            this.$store.commit('comment/getListErr', true)
+          })
       }
-    },
-    created: function() {
-      this.$http.get('/data/commentsList').then((res) => {
-        this.getListErr = res.body.getListErr
-        if (this.getListErr === false) {
-          this.commentsList = res.body.rows
-        }
-      },
-        (res) => {
-          this.getListErr = true
-        })
     }
   }
 </script>

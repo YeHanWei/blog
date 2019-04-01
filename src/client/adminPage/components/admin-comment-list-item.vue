@@ -59,7 +59,16 @@
         this.$http.post('/data/deleteComment', {comment_id: this.commentID}).then(res => {
           this.deleteErr = res.body.deleteErr
           if (this.deleteErr === false) {
-            window.location = window.location
+            // 刷新评论列表
+            this.$http.get('/data/commentsList').then((res) => {
+              this.$store.commit('comment/getListErr', res.body.getListErr)
+              if (this.$store.state.comment.getListErr === false) {
+                this.$store.commit('comment/commentsList', res.body.rows)
+              }
+            },
+              (res) => {
+                this.$store.commit('comment/getListErr', true)
+              })
           }
         }, res => {
           this.deleteErr = true
