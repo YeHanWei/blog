@@ -1,5 +1,6 @@
 <template>
   <div id="menu">
+    <div id="title">个人博客系统 控制台</div>
     <ul class="top-level">
       <li @click="clickArticleList">
         <span class="glyphicon glyphicon-align-right"></span>
@@ -91,8 +92,14 @@
   background: #111111;
   overflow: auto;
 }
+#title{
+  font-size: 30px;
+  color: #EEEEEE;
+  padding: 10px 0 10px 20px;
+  font-family: "Microsoft YaHei",serif;
+}
 .top-level{
-  padding: 20px 0 20px 0;
+  padding: 5px 0 20px 0;
   font-size: 20px;
   border-bottom: 1px solid #111111;
   list-style: none;

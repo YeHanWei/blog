@@ -3,13 +3,13 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="botton" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">切换导航</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <router-link id="blog-title" calss="navbar-brand" to="/">fineCook</router-link>
+          <router-link id="blog-title" calss="navbar-brand" to="/">个人博客系统</router-link>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-font">
@@ -59,8 +59,10 @@ export default {
 
 <style scoped>
   #blog-title{
-    font-size: 36px;
-    font-family: "Vladimir Script", serif;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    font-family: "Microsoft YaHei", serif;
     font-weight: bold;
     padding-left: 8px;
     padding-right: 30px;
