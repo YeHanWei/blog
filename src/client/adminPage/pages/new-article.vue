@@ -146,8 +146,12 @@
         this.html = Value.htmlValue
       }
     },
-    beforeDestroy: function () {
+    created: function () {
+      this.$store.commit('pageState/newArticleActive', true)
+    },
+    destroyed: function () {
       this.$store.commit('article/clearStates')
+      this.$store.commit('pageState/newArticleActive', false)
     }
   }
 </script>

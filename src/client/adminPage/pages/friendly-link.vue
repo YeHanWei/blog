@@ -109,6 +109,7 @@
 
     created: function() {
       // 获取友链列表
+      this.$store.commit('pageState/friendlyLinkActive', true)
       if (this.$store.state.friendlyLink.friendlyLinkList.length === 0) {
         this.$http.get('/data/friendlyLinkList').then((res) => {
           this.getListErr = res.body.getListErr
@@ -118,6 +119,9 @@
             this.getListErr = true
           })
       }
+    },
+    destroyed: function () {
+      this.$store.commit('pageState/friendlyLinkActive', false)
     }
   }
 

@@ -96,12 +96,16 @@
     },
     // 获取标签列表
     created: function () {
+      this.$store.commit('pageState/tagsActive', true)
       if (this.$store.state.tag.tagList.length === 0) {
         this.$http.get('/data/tagsList').then(
           (res) => {
             this.$store.commit('tag/tagList', res.body)
           })
       }
+    },
+    destroyed: function () {
+      this.$store.commit('pageState/tagsActive', false)
     }
   }
 </script>

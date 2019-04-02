@@ -28,11 +28,15 @@
     name: 'draft-box',
     components: {AdminDraftBoxItem},
     created: function () {
+      this.$store.commit('pageState/draftBoxActive', true)
       if (this.$store.state.article.draftList.length === 0) {
         this.$http.get('/data/draftList').then((res) => {
           this.$store.commit('article/draftList', res.body.rows)
         })
       }
+    },
+    destroyed: function () {
+      this.$store.commit('pageState/draftBoxActive', false)
     }
   }
 </script>

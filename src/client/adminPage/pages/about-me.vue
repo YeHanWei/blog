@@ -39,9 +39,13 @@
       }
     },
     created: function () {
+      this.$store.commit('pageState/aboutMeActive', true)
       this.$http.get('/data/getAboutMeMd').then(res => {
         this.md = res.body.about_me_md
       })
+    },
+    destroyed: function () {
+      this.$store.commit('pageState/aboutMeActive', false)
     }
   }
 </script>

@@ -40,6 +40,7 @@
     },
     components: {AdminArticleListItem},
     created: function() {
+      this.$store.commit('pageState/articleListActive', true)
       // 获取文章列表
       if (this.$store.state.article.articleList.length === 0) {
         this.$http.get('/data/getArticle').then((res) => {
@@ -50,6 +51,9 @@
             this.iserr = true
           })
       }
+    },
+    destroyed: function () {
+      this.$store.commit('pageState/articleListActive', false)
     }
   }
 </script>

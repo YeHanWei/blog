@@ -30,6 +30,7 @@
     name: 'comments',
     components: {AdminCommentListItem},
     created: function () {
+      this.$store.commit('pageState/commentsActive', true)
       if (this.$store.state.comment.commentsList.length === 0) {
         this.$http.get('/data/commentsList').then((res) => {
           this.$store.commit('comment/getListErr', res.body.getListErr) // 更新错误状态
@@ -42,6 +43,9 @@
             this.$store.commit('comment/getListErr', true)
           })
       }
+    },
+    destroyed: function () {
+      this.$store.commit('pageState/commentsActive', false)
     }
   }
 </script>

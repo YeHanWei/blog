@@ -29,7 +29,7 @@
 
 <style scoped>
   .content-box{
-    padding: 70px 10px 0 370px;
+    padding: 10px 10px 0 370px;
     overflow: auto;
     height: inherit;
     display: flex;
