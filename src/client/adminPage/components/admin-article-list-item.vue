@@ -90,7 +90,9 @@
           this.deleteErr = res.body.deleteErr
           if (this.deleteErr === false) {
             // window.location = '/admin/articleList'  // 刷新页面
-            this.$store.commit('article/articleList', res.body.rows)
+            this.$http.get('/data/getArticle').then((res) => {
+              this.$store.commit('article/articleList', res.body.rows)
+            })
           }
         }, res => {
           this.deleteErr = true
