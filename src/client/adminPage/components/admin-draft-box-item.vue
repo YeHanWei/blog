@@ -2,8 +2,8 @@
   <tr class="item-font">
     <td>
       <span class="item-name">{{draftTitle}}</span><br/>
-      <button class="btn btn-default control-btn" @click="edit">编辑</button>
-      <button class="btn btn-default control-btn" data-toggle="modal" :data-target="$data._deleteModalID">移除</button>
+      <button class="control-btn" @click="edit">编辑</button>
+      <button class="control-btn" data-toggle="modal" :data-target="$data._deleteModalID">移除</button>
       <!-- delete modal-->
       <div class="modal fade" :id="deleteModalID" data-backdrop="false" tabindex="-1" :aria-labelledby="deleteModelLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
@@ -75,5 +75,11 @@
   }
   tr:hover{
     background-color: rgba(200, 200, 200, 0.6);
+  }
+  td:nth-child(1){
+    padding: 5px 0 5px 10px;
+  }
+  td:nth-child(n+2) {
+    text-align: center;
   }
 </style>

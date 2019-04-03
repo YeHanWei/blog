@@ -4,6 +4,7 @@ html{
 body{
     background-color: #EEEEEE;
     height: inherit;
+    font-family: "Microsoft YaHei",serif;
 }
 #admin-app{
     height: inherit;
@@ -13,9 +14,12 @@ body{
     color: rgba(10,10,10,0.7);
 }
 .control-btn{
-    padding: 1px;
-    font-size: 10px;
-    border: 1px solid rgba(0, 0, 255, 0.6);
+    background: #AAA;
+    border: 0;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 1px 5px 1px 5px;
 }
 .item-name{
     display: inline-block;

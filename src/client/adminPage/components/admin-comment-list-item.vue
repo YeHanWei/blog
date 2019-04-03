@@ -11,7 +11,7 @@
     <td>
       {{createTime}}
       <br/>
-      <button class="btn btn-default control-btn"  data-toggle="modal" :data-target="$data._deleteModalID">移除</button>
+      <button class="control-btn"  data-toggle="modal" :data-target="$data._deleteModalID">移除</button>
       <!-- delete modal -->
       <div class="modal fade" :id="deleteModalID" data-backdrop="false" tabindex="-1" :aria-labelledby="deleteModelLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
@@ -85,5 +85,12 @@ tr{
 }
 tr:hover{
   background-color: rgba(200, 200, 200, 0.6);
+}
+a:hover{
+  text-decoration: none;
+  cursor: pointer;
+}
+td:nth-child(1){
+  padding: 5px 0 5px 10px;
 }
 </style>

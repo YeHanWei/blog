@@ -1,27 +1,20 @@
 <template>
   <div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>标签列表</h3>
-      </div>
-      <div class="panel-body">
-        <table class="table">
-          <thead class="table-header">
-          <tr>
-            <th style="width: 30%">名称</th>
-            <th style="width: 70%">描述</th>
-          </tr>
-          </thead>
-          <tbody>
-            <admin-tags-list-item
-                    v-for="tagMessage in this.$store.state.tag.tagList"
-                    v-bind:message="tagMessage"
-                    v-bind:key="tagMessage.tag_id + tagMessage.tag_name + tagMessage.tag_description"
-            ></admin-tags-list-item>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <table class="table">
+      <thead class="table-header">
+      <tr>
+        <th style="width: 30%">名称</th>
+        <th style="width: 70%">描述</th>
+      </tr>
+      </thead>
+      <tbody>
+        <admin-tags-list-item
+                v-for="tagMessage in this.$store.state.tag.tagList"
+                v-bind:message="tagMessage"
+                v-bind:key="tagMessage.tag_id + tagMessage.tag_name + tagMessage.tag_description"
+        ></admin-tags-list-item>
+      </tbody>
+    </table>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4>新建标签</h4>
@@ -115,5 +108,15 @@ p {
   color: red;
   font-size: 10px;
   text-align: right;
+}
+table{
+  width: 100%;
+  background: #FAFAFA;
+}
+tr{
+  border-bottom: 5px solid #EEEEEE;
+}
+th:nth-child(1){
+  padding: 10px 0 10px 10px;
 }
 </style>

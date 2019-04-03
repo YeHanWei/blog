@@ -3,8 +3,8 @@
     <td>
       <a class="item-name" :href="'/article?article_id=' + articleId.toString()" target="_blank">{{articleTitle}}</a>
       <br/>
-      <button class="btn btn-default control-btn" @click="update">更新</button>
-      <button class="btn btn-default control-btn" data-toggle="modal" :data-target="$data._deleteModalID">删除</button>
+      <button class="control-btn" @click="update">更新</button>
+      <button class="control-btn" data-toggle="modal" :data-target="$data._deleteModalID">删除</button>
       <!-- delete modal-->
       <div class="modal fade" :id="deleteModalID" data-backdrop="false" tabindex="-1" :aria-labelledby="deleteModelLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
@@ -24,7 +24,7 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-default control-btn" data-toggle="modal" :data-target="$data._commentModalID" @click="getComments">评论</button>
+      <button class="control-btn" data-toggle="modal" :data-target="$data._commentModalID" @click="getComments">评论</button>
       <!-- comment list modal -->
       <div class="modal fade" :id="commentModalID" data-backdrop="false" tabindex="-1" :aria-labelledby="commentModelLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -134,5 +134,11 @@
   }
   tr:hover{
     background-color: rgba(200, 200, 200, 0.6);
+  }
+  td:nth-child(1){
+    padding: 5px 0 5px 10px;
+  }
+  td:nth-child(n+2) {
+    text-align: center;
   }
 </style>

@@ -119,5 +119,6 @@
   }
   .active{
     background: #555;
+    color: aqua !important;
   }
 </style>

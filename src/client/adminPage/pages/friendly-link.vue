@@ -1,29 +1,22 @@
 <template>
   <div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>友链列表</h3>
-      </div>
-      <div class="panel-body">
-        <p v-show="getListErr">获取友链列表错误列表</p>
-        <table class="table" v-show="!getListErr">
-          <thead>
-          <tr class="table-header">
-            <th style="width: 15%">名称</th>
-            <th style="width: 35%">URL</th>
-            <th style="width: 50%">描述</th>
-          </tr>
-          </thead>
-          <tbody>
-          <admin-friendly-link-item
-            v-for="friendlyLinkItem in this.$store.state.friendlyLink.friendlyLinkList"
-            v-bind:message="friendlyLinkItem"
-            v-bind:key="friendlyLinkItem.link_name + friendlyLinkItem.link_url + friendlyLinkItem.link_description"
-          ></admin-friendly-link-item>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <p v-show="getListErr">获取友链列表错误列表</p>
+    <table class="table" v-show="!getListErr">
+      <thead>
+      <tr class="table-header">
+        <th style="width: 15%">名称</th>
+        <th style="width: 35%">URL</th>
+        <th style="width: 50%">描述</th>
+      </tr>
+      </thead>
+      <tbody>
+      <admin-friendly-link-item
+        v-for="friendlyLinkItem in this.$store.state.friendlyLink.friendlyLinkList"
+        v-bind:message="friendlyLinkItem"
+        v-bind:key="friendlyLinkItem.link_name + friendlyLinkItem.link_url + friendlyLinkItem.link_description"
+      ></admin-friendly-link-item>
+      </tbody>
+    </table>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4>新增友链</h4>
@@ -132,5 +125,15 @@ p {
   color: red;
   font-size: 10px;
   text-align: right;
+}
+table{
+  width: 100%;
+  background: #FAFAFA;
+}
+tr{
+  border-bottom: 5px solid #EEEEEE;
+}
+th:nth-child(1){
+  padding: 10px 0 10px 10px;
 }
 </style>

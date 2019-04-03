@@ -2,7 +2,7 @@
   <tr class="item-font">
     <td>
       <span class="item-name">{{tagName}}</span><br/>
-      <button class="btn btn-default control-btn" data-toggle="modal" :data-target="$data._updateModalID">修改</button>
+      <button class="control-btn" data-toggle="modal" :data-target="$data._updateModalID">修改</button>
       <!-- updateModal -->
       <div class="modal fade" :id="updateModalID" data-backdrop="false" tabindex="-1" :aria-labelledby="updateModelLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -35,7 +35,7 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-default control-btn" data-toggle="modal" :data-target="$data._deleteModalID">删除</button>
+      <button class="control-btn" data-toggle="modal" :data-target="$data._deleteModalID">删除</button>
       <!-- deleteModal -->
       <div class="modal fade" :id="deleteModalID" data-backdrop="false" tabindex="-1" :aria-labelledby="deleteModelLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
@@ -145,5 +145,8 @@
     color: red;
     font-size: 10px;
     text-align: right;
+  }
+  td:nth-child(1){
+    padding: 5px 0 5px 10px;
   }
 </style>
