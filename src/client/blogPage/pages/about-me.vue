@@ -19,5 +19,9 @@
 </script>
 
 <style scoped>
-
+div{
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+}
 </style>

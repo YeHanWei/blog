@@ -34,9 +34,14 @@ export default {
 .article-item{
   margin: 0 0 5px 0;
   padding: 10px 20px 10px 20px;
-  background: white;
+  background: rgba(255, 255, 255, 0.9);
   border: 1px;
   max-width: 1000px;
+  transition: background 0.7s;
+  -webkit-transition: background 0.6s;
+}
+.article-item:hover{
+  background: rgba(220, 220, 220, 0.9);
 }
 h3{
   margin: 0;

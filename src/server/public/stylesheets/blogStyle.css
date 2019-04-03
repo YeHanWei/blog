@@ -3,7 +3,7 @@ html{
 }
 body{
     height: inherit;
-    background-color: rgba(0, 0, 255, 0.15);
+    background-color: rgba(0, 0, 255, 0.05);
     font-family: "微软雅黑", serif;
 }
 #blog-app{
