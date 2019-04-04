@@ -1,14 +1,7 @@
 <template>
-  <div class="panel panel-default">
-    <div class="panel-heading"><p class="title">{{tagName}}</p></div>
-    <div class="panel-body">
-      <ul class="list-group">
-        <router-link v-for="article in articleList" :to="'/article?article_id=' + article.article_id.toString()" target="_self">
-          <li class="list-group-item">{{article.article_title}}</li>
-        </router-link>
-      </ul>
-    </div>
-  </div>
+  <router-link :to="'/tag?tag_id=' + this.message.tag_id.toString()" target="_self">
+    <button :id="this.message.tag_id.toString()">{{tagName}}</button>
+  </router-link>
 </template>
 
 <script>
@@ -17,17 +10,27 @@
     props: ['message'],
     data() {
       return {
-        tagName: this.message.tag_name,
-        articleList: this.message.articles
+        tagName: this.message.tag_name
       }
+    },
+    mounted: function () {
+      let btn = document.getElementById(this.message.tag_id.toString())
+      let R, G, B
+      R = Math.random() * 255
+      G = Math.random() * 255
+      B = Math.random() * 255
+      btn.style.background = 'rgba(' + R + ', ' + G + ', ' + B + ', 0.3)'
+      btn.style.color = 'rgba(' + (255 - R) / 2 + ', ' + (255 - G) / 2 + ', ' + (255 - B) / 2 + ')'
     }
   }
 </script>
 
 <style scoped>
-.title {
+button{
+  margin: 20px 10px;
+  padding: 5px 10px;
   font-size: 20px;
-  font-weight: bold;
-  margin: 0;
+  border: 0;
+  border-radius: 3px;
 }
 </style>

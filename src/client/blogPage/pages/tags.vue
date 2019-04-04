@@ -1,8 +1,8 @@
 <template>
   <div>
     <blog-tag-list-item
-            v-for="tagArticle in tagArticles"
-            v-bind:message="tagArticle"
+            v-for="tag in tags"
+            v-bind:message="tag"
     ></blog-tag-list-item>
   </div>
 </template>
@@ -15,12 +15,17 @@
     components: {BlogTagListItem},
     data() {
       return {
-        tagArticles: []
+        // tagArticles: []
+        tags: []
       }
     },
     created: function () {
-      this.$http.get('/blogData/tagArticles').then(res => {
-        this.tagArticles = res.body
+      // this.$http.get('/blogData/tagArticles').then(res => {
+      //   this.tagArticles = res.body
+      // })
+      this.$http.get('/blogData/getTags').then(res => {
+        this.tags = res.body.rows
+        console.log(this.tags)
       })
     }
   }

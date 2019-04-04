@@ -27,7 +27,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>
@@ -35,8 +34,6 @@ export default {
   margin: 0 0 5px 0;
   padding: 10px 20px 10px 20px;
   background: rgba(255, 255, 255, 0.9);
-  border: 1px;
-  max-width: 1000px;
   transition: background 0.7s;
   -webkit-transition: background 0.6s;
 }

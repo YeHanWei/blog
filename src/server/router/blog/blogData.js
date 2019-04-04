@@ -25,6 +25,13 @@ blogData.get('/TagArticles', (req, res) => {
   })
 });
 
+// 获取标签
+blogData.get('/getTags', (req, res) => {
+  op.getTags().then((obj) => {
+    res.send({rows: obj.result})
+  })
+})
+
 // 获取关于我，HTML格式
 blogData.get('/getAboutMeHtml', (req, res) => {
   op.getAboutMe('html').then(obj => {
