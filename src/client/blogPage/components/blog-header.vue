@@ -37,8 +37,8 @@
                 <span>&nbsp;&nbsp;关于我</span>
               </router-link>
             </li>
-            <li class="dropdown">
-              <router-link to="#" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <li>
+              <router-link to="#" >
                 <span class="glyphicon glyphicon-search"></span>
                 <span>&nbsp;&nbsp;站内搜索</span>
               </router-link>

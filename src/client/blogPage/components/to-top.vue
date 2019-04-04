@@ -32,5 +32,6 @@
     right: 50px;
     bottom: 50px;
     font-size: 20px;
+    background: rgba(240, 240, 240, 0.5);
   }
 </style>
