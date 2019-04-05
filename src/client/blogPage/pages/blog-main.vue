@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <blog-header></blog-header>
-    <div style="padding-top: 76px; flex: 1;" class="container">
+    <div style="padding-top: 76px; flex: 1; max-width: 1000px" class="container">
       <router-view/>
     </div>
     <follow-mouse></follow-mouse>
