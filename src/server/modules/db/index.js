@@ -19,6 +19,7 @@ module.exports = {
   getArticleDetail: article.getArticleDetail,
   addTag: tag.addTag,
   getTags: tag.getTags,
+  getTagDetail: tag.getTagDetail,
   deleteTag: tag.deleteTag,
   updateTag: tag.updateTag,
   getTagArticles: tag.getTagArticles,

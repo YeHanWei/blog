@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="'/tag?tag_id=' + this.message.tag_id.toString()" target="_self">
+  <router-link :to="'/tagDetail?tag_id=' + this.message.tag_id.toString()" target="_self">
     <button :id="this.message.tag_id.toString()">{{tagName}}</button>
   </router-link>
 </template>

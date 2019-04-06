@@ -26,6 +26,10 @@ export default new Router({
           component: home
         },
         {
+          path: 'tagDetail',
+          component: home
+        },
+        {
           path: 'tags',
           component: tags
         },

@@ -8,6 +8,7 @@ let {Articles, Comments, TagArticles, Tags} = model;
 module.exports = {
   addTag: addTag,
   getTags: getTags,
+  getTagDetail: getTagDetail,
   deleteTag: deleteTag,
   updateTag: updateTag,
   getTagArticles: getTagArticles
@@ -46,6 +47,26 @@ function getTags() {
       resolve({iserr: false, result: result})
     }).catch(err => {
       reject({iserr: true})
+    })
+  })
+}
+
+/**
+ * 根据tag_id查找相关文章
+ * @param id 标签id
+ */
+function getTagDetail(id) {
+  let result = {};
+  return new Promise((resolve, reject) => {
+    Tags.findAll({where: {tag_id: id}}).then(rows => {
+      result.tag = tool.handleResult(rows)[0];
+      connection.query('select articles.article_id,article_title,article_views,article_time,article_summary ' +
+        'from articles, tag_articles ' +
+        'where articles.article_id=tag_articles.article_id and tag_articles.tag_id=?;',
+        { replacements: [id], type: TYPE.QueryTypes.SELECT }).then(articles => {
+          result.articles = articles;
+          resolve(result)
+      })
     })
   })
 }

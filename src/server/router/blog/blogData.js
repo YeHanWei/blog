@@ -32,6 +32,14 @@ blogData.get('/getTags', (req, res) => {
   })
 })
 
+// 根据标签id获取对应标签的文章列表
+blogData.post('/getTagDetail', (req, res) => {
+  console.log(req.body)
+  op.getTagDetail(req.body.tag_id).then(result => {
+    res.send({rows: result})
+  })
+})
+
 // 获取关于我，HTML格式
 blogData.get('/getAboutMeHtml', (req, res) => {
   op.getAboutMe('html').then(obj => {
