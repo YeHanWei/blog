@@ -1,6 +1,7 @@
 <template>
   <div class="row">
-    <div class="col-md-offset-1 col-md-10">
+    <div v-if="!showCard">正在加载......</div>
+    <div v-if="showCard" class="col-md-offset-1 col-md-10">
       <!-- 文章 -->
       <article>
         <!-- 文章标题 -->
@@ -72,6 +73,7 @@
       return {
         article: {},
         comments: [],
+        showCard: false,
         commentUserName: '',
         commentEmail: '',
         commentContent: '',
@@ -125,6 +127,7 @@
         this.$http.post('/blogData/articleDetail', reqObj).then(res => {
           this.article = res.body.article
           this.comments = this.article.comments.reverse()
+          this.showCard = true
         })
       }
     }
