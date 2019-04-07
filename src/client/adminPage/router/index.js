@@ -3,7 +3,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Init from '../pages/init'
 import Login from '../pages/login'
-import FinePwd from '../pages/fine-pwd'
+import FindPwd from '../pages/find-pwd'
 import Main from '../pages/admin-main'
 import ArticleList from '../pages/article-list'
 import FriendlyLink from '../pages/friendly-link'
@@ -24,8 +24,8 @@ export default new Router({
       component: Login
     },
     {
-      path: '/finePwd',
-      component: FinePwd
+      path: '/findPwd',
+      component: FindPwd
     },
     {
       path: '/init',

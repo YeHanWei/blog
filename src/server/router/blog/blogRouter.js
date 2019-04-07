@@ -8,7 +8,7 @@ blogRouter.get('/login', function(req, res, next) {
   res.render('admin-index');
 });
 /* 找回密码 */
-blogRouter.get('/finePwd', function(req, res, next) {
+blogRouter.get('/findPwd', function(req, res, next) {
   res.render('admin-index');
 });
 /* 初始化 */
