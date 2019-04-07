@@ -25,25 +25,42 @@ export default {
   created: function() {
     // 获取文章列表
     if (window.location.pathname === '/home' || window.location.pathname === '/') {
-      this.$http.get('/data/getArticle').then((res) => {
-        this.articleList = res.body.rows
-        this.title = '全部文章'
-      })
+      if (this.$store.state.articles.length === 0) {
+        // 文章列表为空时，请求文章列表数据
+        this.$http.get('/data/getArticle').then((res) => {
+          this.$store.commit('articles', res.body.rows)
+          this.articleList = this.$store.state.articles
+        })
+      }
+      this.articleList = this.$store.state.articles
+      this.title = '全部文章'
     }
     // 根据标签获取文章列表
     if (window.location.pathname === '/tagDetail') {
       let str = window.location.search
       let reqObj = {}
-      if (str.indexOf('?') !== -1) {
+      if (str.indexOf('?') !== -1) {  // 存在参数
         let reqStr = str.substr(1)
-        let reqs = reqStr.split('&')
+        let reqs = reqStr.split('&')  // 切割参数
         for (let i = 0; i < reqs.length; i++) {
           reqObj[reqs[i].split('=')[0]] = reqs[i].split('=')[1]
         }
-        this.$http.post('/blogData/getTagDetail', reqObj).then((res) => {
-          this.articleList = res.body.rows.articles
-          this.title = '标签 > ' + res.body.rows.tag.tag_name
-        })
+        let isExist = false
+        for (let i in this.$store.state.tagArticles) {
+          if (this.$store.state.tagArticles[i].tag.tag_id === reqObj.tag_id) {
+            isExist = true
+            this.articleList = this.$store.state.tagArticles[i].articles
+            this.title = '标签 > ' + this.$store.state.tagArticles[i].tag.tag_name
+            break
+          }
+        }
+        if (!isExist) {
+          this.$http.post('/blogData/getTagDetail', reqObj).then((res) => {
+            this.$store.commit('tagArticles', res.body.rows)
+            this.articleList = res.body.rows.articles
+            this.title = '标签 > ' + res.body.rows.tag.tag_name
+          })
+        }
       }
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <blog-tag-list-item
-            v-for="tag in tags"
+            v-for="tag in this.$store.state.tags"
             v-bind:message="tag"
     ></blog-tag-list-item>
   </div>
@@ -13,20 +13,12 @@
   export default {
     name: 'tags',
     components: {BlogTagListItem},
-    data() {
-      return {
-        // tagArticles: []
-        tags: []
-      }
-    },
     created: function () {
-      // this.$http.get('/blogData/tagArticles').then(res => {
-      //   this.tagArticles = res.body
-      // })
-      this.$http.get('/blogData/getTags').then(res => {
-        this.tags = res.body.rows
-        console.log(this.tags)
-      })
+      if (this.$store.state.tags.length === 0) {
+        this.$http.get('/blogData/getTags').then(res => {
+          this.$store.commit('tags', res.body.rows)
+        })
+      }
     }
   }
 </script>

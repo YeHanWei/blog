@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="article in articleList">
+    <li v-for="article in this.$store.state.archive">
       <span>{{article.article_time}}</span><span> &bull; </span>
       <router-link :to="'/article?article_id=' + article.article_id.toString()" target="_self">{{article.article_title}}</router-link>
     </li>
@@ -10,18 +10,15 @@
 <script>
   export default {
     name: 'archive',
-    data() {
-      return {
-        articleList: []
-      }
-    },
     created: function () {
-      this.$http.get('/blogData/getArchive').then(res => {
-        this.articleList = res.body
-        this.articleList.sort(function (id1, id2) {
-          return id2.article_id - id1.article_id
+      if (this.$store.state.archive.length === 0) {
+        this.$http.get('/blogData/getArchive').then(res => {
+          res.body.sort(function (id1, id2) {
+            return id2.article_id - id1.article_id
+          })
+          this.$store.commit('archive', res.body)
         })
-      })
+      }
     }
   }
 </script>
