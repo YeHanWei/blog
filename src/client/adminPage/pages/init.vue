@@ -1,54 +1,38 @@
 <template>
   <div class="center-box">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>初始化配置</h3>
+    <header>个人博客系统</header>
+    <form>
+      <div class="user-op glyphicon glyphicon-user"> 初始化配置</div>
+      <!-- lable与input之间的注释是为了消除两个inline-bloke之间的空格 -->
+      <div>
+        <label for="account">账号</label><!--
+        --><input id="account" type="text" v-model="account"/>
       </div>
-      <div class="panel-body">
-        <form class="form-horizontal">
-          <div class="form-group">
-            <label for="account" class="control-label col-md-4">账号</label>
-            <div class="col-md-8">
-              <input id="account" class="form-control" type="text" v-model="account"/>
-            </div>
-          </div>
-          <p v-show="isAccoutErr">*账号为1-16位字母、数字与_的组合</p>
-          <div class="form-group">
-            <label for="password" class="control-label col-md-4">密码</label>
-            <div class="col-md-8">
-              <input id="password" class="form-control" type="password" v-model="password"/>
-            </div>
-          </div>
-          <p v-show="isPwdErr">*密码格式应为8位以上的字母、数字与_的组合</p>
-          <div class="form-group">
-            <label for="repwd" class="control-label col-md-4">重复密码</label>
-            <div class="col-md-8">
-              <input id="repwd" class="form-control" type="password" v-model="rePwd"/>
-            </div>
-          </div>
-          <p v-show="!isSame">*重复密码与密码不一致</p>
-          <div class="form-group">
-            <label for="email" class="control-label col-md-4">邮箱</label>
-            <div class="col-md-8">
-              <input id="email" class="form-control" type="email" v-model="email"/>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email_password" class="control-label col-md-4">邮箱授权码</label>
-            <div class="col-md-8">
-              <input id="email_password" class="form-control" type="password" v-model="email_password"/>
-            </div>
-          </div>
-          <p v-show="isEmailErr">*邮箱登陆错误，请检查邮箱与授权码是否错误</p>
-          <p v-show="iserr">*初始化失败，请重试！</p>
-          <div class="form-group">
-            <div class="col-md-offset-9">
-              <button class="btn btn-success" type="button" v-on:click="initConf">提交</button>
-            </div>
-          </div>
-        </form>
+      <p v-show="isAccoutErr">*账号为1-16位字母、数字与_的组合</p>
+      <div>
+        <label for="password">密码</label><!--
+        --><input id="password" type="password" v-model="password"/>
       </div>
-    </div>
+      <p v-show="isPwdErr">*密码格式应为8位以上的字母、数字与_的组合</p>
+      <div>
+        <label for="repwd">重复密码</label><!--
+        --><input id="repwd" type="password" v-model="rePwd"/>
+      </div>
+      <p v-show="!isSame">*重复密码与密码不一致</p>
+      <div>
+        <label for="email">邮箱</label><!--
+        --><input id="email" type="email" v-model="email"/>
+      </div>
+      <div>
+        <label for="email_password">邮箱授权码</label><!--
+        --><input id="email_password" type="password" v-model="email_password"/>
+      </div>
+      <p v-show="isEmailErr">*邮箱登陆错误，请检查邮箱与授权码是否错误</p>
+      <p v-show="iserr">*初始化失败，请重试！</p>
+      <div class="btn-content">
+        <button type="button" v-on:click="initConf">提交</button>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -107,15 +91,64 @@
 </script>
 
 <style scoped>
+  /* 不定宽高居中 */
   .center-box{
     position: absolute;
     left: 50%;
     top: 50%;
+    width: 500px;
     transform: translate(-50%, -50%);
+  }
+  header{
+    text-align: center;
+    font-size: 30px;
+    color: rgba(30, 30, 30, 0.7);
+    padding: 20px 0 20px 0;
+    background: rgba(50, 50, 255, 0.6);
+  }
+  form{
+    padding: 20px;
+    background: white;
+  }
+  .user-op{
+    display: block;
+    font-size: 18px;
+    padding: 2px 0 2px 0;
+  }
+  form div{
+    margin: 20px 0 20px 0;
+  }
+  label{
+    display: inline-block;
+    text-align: right;
+    width: 20%;
+    padding-right: 10px;
+  }
+  input{
+    outline: none;
+    display: inline-block;
+    width: 80%;
+    height: 40px;
+    padding: 0 0 0 10px;
+    border: 2px solid rgba(20, 20, 255, 0.1);
+    border-radius: 2px;
+    background: rgba(200, 200, 200, 0.5);
+    font-size: 16px;
   }
   p{
     color: red;
     text-align: right;
     font-size: 10px;
+  }
+  .btn-content{
+    text-align: right;
+  }
+  button{
+    width: 80%;
+    height: 50px;
+    border: 0;
+    background: rgba(50, 50, 255, 0.6);
+    font-size: 24px;
+    font-weight: 600;
   }
 </style>
