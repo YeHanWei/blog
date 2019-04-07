@@ -1,56 +1,37 @@
 <template>
   <div class="center-box">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>找回密码</h3>
+    <header>个人博客系统</header>
+    <form>
+      <div class="user-op glyphicon glyphicon-user"> 找回密码</div>
+      <div>
+        <label for="eamil">邮箱</label><!--
+        --><input id="eamil" type="email" v-model="email"/>
       </div>
-      <div class="panel-body">
-        <form class="form-horizontal">
-          <div class="form-group">
-            <label for="eamil" class="control-label col-md-3">邮箱</label>
-            <div class="col-md-9">
-              <input id="eamil" type="email" class="form-control" v-model="email"/>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="checkNum" class="col-md-3 control-label">验证码</label>
-            <div class="col-md-5">
-              <input id="checkNum" type="text" class="form-control" v-model="checkNum"/>
-            </div>
-            <div class="col-md-4">
-              <button class="btn btn-default" type="button"  v-on:click="getCheckNum">获取邮箱验证码</button>
-            </div>
-          </div>
-          <p v-show="isCheckNumErr">*验证码发送失败</p>
-          <div class="form-group">
-            <label for="newpwd" class="control-label col-md-3">新密码</label>
-            <div class="col-md-9">
-              <input id="newpwd" type="password" class="form-control" v-model="newPwd"/>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="renewpwd" class="control-label col-md-3">重复密码</label>
-            <div class="col-md-9">
-              <input id="renewpwd" type="password" class="form-control" v-model="reNewPwd"/>
-            </div>
-          </div>
-          <p v-show="!isSame">新密码与重复密码不一致或密码长度小于8位</p>
-          <p v-show="iserr">更改失败，请重试！</p>
-          <div class="form-group">
-            <div class="col-md-2 col-md-offset-7">
-              <button class="btn btn-success" type="button" v-on:click="findPwd">提交</button>
-            </div>
-            <div class="col-md-3">
-              <router-link to="/login">
-                <button class="btn btn-primary" type="button">
-                返回登陆
-                </button>
-              </router-link>
-            </div>
-          </div>
-        </form>
+      <div>
+        <label for="checkNum">验证码</label><!--
+        --><input id="checkNum" style="width: 40%" type="text" v-model="checkNum"/><!--
+        --><button type="button" class="get-num" style="width: 40%"  v-on:click="getCheckNum">获取邮箱验证码</button>
       </div>
-    </div>
+      <p v-show="isCheckNumErr">*验证码发送失败</p>
+      <div>
+        <label for="newpwd">新密码</label><!--
+        --><input id="newpwd" type="password" v-model="newPwd"/>
+      </div>
+      <div>
+        <label for="renewpwd">重复密码</label><!--
+        --><input id="renewpwd" type="password" v-model="reNewPwd"/>
+      </div>
+      <p v-show="!isSame">新密码与重复密码不一致或密码长度小于8位</p>
+      <p v-show="iserr">更改失败，请重试！</p>
+      <div>
+        <button type="button" v-on:click="findPwd">提交</button>
+        <router-link to="/login">
+          <button type="button">
+          返回登陆
+          </button>
+        </router-link>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -104,15 +85,69 @@
 </script>
 
 <style scoped>
-.center-box{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
+  .center-box{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+  }
+  header{
+    text-align: center;
+    font-size: 30px;
+    color: rgba(30, 30, 30, 0.7);
+    padding: 20px 0 20px 0;
+    background: rgba(50, 50, 255, 0.6);
+  }
+  form{
+    padding: 20px;
+    background: white;
+  }
+  .user-op{
+    display: block;
+    font-size: 18px;
+    padding: 2px 0 2px 0;
+  }
+  form div{
+    margin: 20px 0 20px 0;
+  }
+  label{
+    display: inline-block;
+    text-align: right;
+    width: 20%;
+    padding-right: 10px;
+  }
+  input{
+    outline: none;
+    display: inline-block;
+    width: 80%;
+    height: 40px;
+    padding: 0 0 0 10px;
+    border: 2px solid rgba(20, 20, 255, 0.1);
+    border-radius: 2px;
+    background: rgba(200, 200, 200, 0.5);
+    font-size: 16px;
+  }
   p{
     color: red;
     font-size: 10px;
     text-align: right;
+  }
+  .get-num{
+    margin: 2px 0 2px 0;
+    border: 2px solid white;
+  }
+  form div:nth-last-child(1) {
+    text-align: right;
+  }
+  a{
+    color: inherit;
+  }
+  button{
+    height: 40px;
+    width: 20%;
+    border: 0;
+    background: rgba(50, 50, 255, 0.6);
+    font-size: 18px;
   }
 </style>
