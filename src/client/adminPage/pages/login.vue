@@ -1,7 +1,7 @@
 <template>
   <div class="center-box">
     <header>个人博客系统</header>
-    <section>
+    <form>
       <div class="user-op glyphicon glyphicon-user"> 登陆</div>
       <div>
         <input id="account" type="text" placeholder="请输入账号" v-model="account"/>
@@ -14,7 +14,7 @@
         <span>忘记密码？<router-link to="/finePwd">找回密码</router-link></span><br/>
       </div>
       <button type="button" v-on:click="login">登 陆</button>
-    </section>
+    </form>
   </div>
 </template>
 
@@ -66,7 +66,7 @@ header{
   padding: 20px 0 20px 0;
   background: rgba(50, 50, 255, 0.6);
 }
-section{
+form{
   padding: 20px;
   background: white;
 }
