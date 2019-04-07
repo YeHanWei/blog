@@ -1,34 +1,20 @@
 <template>
   <div class="center-box">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>登陆</h3>
+    <header>个人博客系统</header>
+    <section>
+      <div class="user-op glyphicon glyphicon-user"> 登陆</div>
+      <div>
+        <input id="account" type="text" placeholder="请输入账号" v-model="account"/>
       </div>
-      <div class="panel-body">
-        <form class="form-horizontal">
-          <div class="form-group">
-            <label for="account" class="control-label col-md-3">账号：</label>
-            <div class="col-md-9">
-              <input id="account" type="text" class="form-control" v-model="account"/>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="password" class="control-label col-md-3">密码：</label>
-            <div class="col-md-9">
-              <input id="password" type="password" class="form-control" v-model="password"/>
-            </div>
-          </div>
-          <p v-show="iserr">*账号与密码不匹配</p>
-          <div style="float: right">
-            <span>忘记密码？<router-link to="/finePwd">找回密码</router-link></span><br/>
-          </div>
-          <div class="form-group" style="float: right;clear: both">
-            <button class="btn btn-success" type="button" v-on:click="login">登陆</button>
-            <span>&nbsp;&nbsp;</span>
-          </div>
-        </form>
+      <div>
+        <input id="password" type="password" placeholder="请输入密码" v-model="password"/>
       </div>
-    </div>
+      <p v-show="iserr">*账号与密码不匹配</p>
+      <div style="float: right">
+        <span>忘记密码？<router-link to="/finePwd">找回密码</router-link></span><br/>
+      </div>
+      <button type="button" v-on:click="login">登 陆</button>
+    </section>
   </div>
 </template>
 
@@ -68,17 +54,54 @@
 <style scoped>
 .center-box{
   position: absolute;
+  width: 500px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-  span{
-    display: inline-block;
-    padding: 0 0 10px 0;
-  }
-  p{
-    color: red;
-    font-size: 10px;
-    text-align: center;
-  }
+header{
+  text-align: center;
+  font-size: 30px;
+  color: rgba(30, 30, 30, 0.7);
+  padding: 20px 0 20px 0;
+  background: rgba(50, 50, 255, 0.6);
+}
+section{
+  padding: 20px;
+  background: white;
+}
+.user-op{
+  display: block;
+  font-size: 18px;
+  padding: 2px 0 2px 0;
+}
+span{
+  display: inline-block;
+  padding: 0 0 10px 0;
+}
+input{
+  outline: none;
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin: 20px 0 20px 0;
+  padding: 0 0 0 10px;
+  border: 2px solid rgba(20, 20, 255, 0.1);
+  border-radius: 2px;
+  background: rgba(200, 200, 200, 0.5);
+  font-size: 16px;
+}
+p{
+  color: red;
+  font-size: 10px;
+  text-align: right;
+}
+button{
+  width: 100%;
+  height: 50px;
+  border: 0;
+  background: rgba(50, 50, 255, 0.6);
+  font-size: 24px;
+  font-weight: 600;
+}
 </style>
