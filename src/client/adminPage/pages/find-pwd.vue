@@ -71,7 +71,7 @@
           this.$http.post('/data/finePwd', {
             email: this.email,
             checkNum: this.checkNum,
-            newPwd: crypto.createHash('md5').update(this.newPwd).digest("hex")
+            newPwd: crypto.createHash('md5').update(this.newPwd).digest('hex')
           }).then((res) => {
             this.iserr = res.body.iserr
             if (!this.iserr) {

@@ -11,7 +11,7 @@
       </div>
       <p v-show="iserr">*账号与密码不匹配</p>
       <div style="float: right">
-        <span>忘记密码？<router-link to="/finePwd">找回密码</router-link></span><br/>
+        <span>忘记密码？<router-link to="/findPwd">找回密码</router-link></span><br/>
       </div>
       <button type="button" v-on:click="login">登 陆</button>
     </form>
@@ -39,7 +39,7 @@
       login: function(event) {
         this.$http.post('/data/login', {
           account: this.account,
-          password: crypto.createHash('md5').update(this.password).digest("hex")
+          password: crypto.createHash('md5').update(this.password).digest('hex')
         }).then((res) => {
           this.iserr = res.body.iserr
           if (this.iserr) {

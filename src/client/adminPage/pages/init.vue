@@ -38,6 +38,7 @@
 
 <script>
   import crypto from 'crypto-js'    // 加解密模块
+  import DES from '../../../source/javascript/DES'
   export default {
     name: 'init',
     data() {
@@ -73,9 +74,9 @@
           // 验证无误后发送http请求
           this.$http.post('/data/init', {
             account: this.account,
-            password: crypto.createHash('md5').update(this.password).digest("hex"), // 密码使用MD5进行加密
+            password: crypto.createHash('md5').update(this.password).digest('hex'), // 密码使用MD5进行加密
             email: this.email,
-            email_password: this.email_password
+            email_password: DES.desEncrypt(this.email_password)     // 邮箱验证码使用DES进行加密
           }).then((res) => {
             this.isEmailErr = res.body.isEmailErr
             this.iserr = res.body.iserr

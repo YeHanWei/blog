@@ -2,6 +2,7 @@ import email from 'nodemailer'
 // import db from '../db/index'
 import op from '../db/index'
 import emsg from './message'
+import DES from '../../../source/javascript/DES'
 
 /**
  * 创建email传输器对象
@@ -24,7 +25,7 @@ async function mailTransport(){
       secureConnection: true, // 使用SSL方式（安全方式，防止被窃取信息）
       auth: {
         user: conf.result.email,
-        pass: conf.result.email_password
+        pass: DES.desDecrypt(conf.result.email_password)  // 对邮箱授权码进行解密再填入
       }
     });
   }

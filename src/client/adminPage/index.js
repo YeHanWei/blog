@@ -50,7 +50,6 @@ Vue.prototype.delCookie = function (name, path, domain, secure) {
   this.setCookie(name, '', 0, path, domain, secure)
 }
 
-
 /* eslint-disable no-new */
 new Vue({
   el: '#admin-app',
