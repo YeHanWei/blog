@@ -19,6 +19,7 @@
 </template>
 
 <script>
+  import crypto from 'crypto-js'    // 加解密模块
   export default {
     name: 'login',
     data() {
@@ -36,7 +37,10 @@
       * 不匹配则将iserr设为true，匹配则跳转首页
       */
       login: function(event) {
-        this.$http.post('/data/login', {account: this.account, password: this.password}).then((res) => {
+        this.$http.post('/data/login', {
+          account: this.account,
+          password: crypto.createHash('md5').update(this.password).digest("hex")
+        }).then((res) => {
           this.iserr = res.body.iserr
           if (this.iserr) {
             this.account = ''

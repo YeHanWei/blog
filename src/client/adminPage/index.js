@@ -13,7 +13,7 @@ Vue.use(vueResource)
  * @param name 读取的名字
  * @return {string} 对应name的值
  */
-function getCookie (name) {
+Vue.prototype.getCookie = function(name) {
   let cookieName = encodeURIComponent(name) + '='
   let start = document.cookie.indexOf(cookieName)
   let value = null
@@ -50,7 +50,6 @@ Vue.prototype.delCookie = function (name, path, domain, secure) {
   this.setCookie(name, '', 0, path, domain, secure)
 }
 
-Vue.prototype.getCookie = getCookie
 
 /* eslint-disable no-new */
 new Vue({

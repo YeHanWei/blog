@@ -37,6 +37,7 @@
 </template>
 
 <script>
+  import crypto from 'crypto-js'    // 加解密模块
   export default {
     name: 'init',
     data() {
@@ -72,7 +73,7 @@
           // 验证无误后发送http请求
           this.$http.post('/data/init', {
             account: this.account,
-            password: this.password,
+            password: crypto.createHash('md5').update(this.password).digest("hex"), // 密码使用MD5进行加密
             email: this.email,
             email_password: this.email_password
           }).then((res) => {

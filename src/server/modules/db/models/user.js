@@ -7,7 +7,7 @@ let users = connection.define('users', {
     primaryKey: true
   },
   password: {
-    type: TYPE.STRING(18),
+    type: TYPE.TEXT,
     allowNull: false
   },
   email: {
@@ -18,7 +18,7 @@ let users = connection.define('users', {
     }
   },
   email_password: {
-    type: TYPE.STRING(50),
+    type: TYPE.TEXT,
     allowNull: false
   },
   name: {

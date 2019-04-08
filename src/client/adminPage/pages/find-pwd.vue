@@ -21,8 +21,7 @@
         <label for="renewpwd">重复密码</label><!--
         --><input id="renewpwd" type="password" v-model="reNewPwd"/>
       </div>
-      <p v-show="!isSame">新密码与重复密码不一致或密码长度小于8位</p>
-      <p v-show="iserr">更改失败，请重试！</p>
+      <p v-show="iserr">{{errMes}}</p>
       <div>
         <button type="button" v-on:click="findPwd">提交</button>
         <router-link to="/login">
@@ -36,6 +35,7 @@
 </template>
 
 <script>
+  import crypto from 'crypto-js'    // 加解密模块
   export default {
     name: 'fine-pwd',
     data() {
@@ -46,7 +46,7 @@
         reNewPwd: '',
         isCheckNumErr: false,
         iserr: false,
-        isSame: true
+        errMes: ''
       }
     },
     methods: {
@@ -61,22 +61,27 @@
       },
 
       findPwd: function (event) {
-        this.isSame = true
         this.iserr = false
         if ((this.newPwd !== this.reNewPwd) || this.newPwd.length < 8) {
-          this.isSame = false
+          this.errMes = '新密码与重复密码不一致或密码长度小于8位'
+          this.iserr = true
+        } else if (/\W/.test(this.password)) {
+          this.errMes = '密码应为数字字母和_的组合'
         } else {
           this.$http.post('/data/finePwd', {
             email: this.email,
             checkNum: this.checkNum,
-            newPwd: this.newPwd
+            newPwd: crypto.createHash('md5').update(this.newPwd).digest("hex")
           }).then((res) => {
             this.iserr = res.body.iserr
             if (!this.iserr) {
-              window.location = '/admin/login'
+              this.$router.push('/login')
+            } else {
+              this.errMes = '更改失败，请重试！'
             }
           }, (res) => {
             this.iserr = true
+            this.errMes = '更改失败，请重试！'
           })
         }
       }
