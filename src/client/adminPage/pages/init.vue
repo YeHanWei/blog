@@ -37,7 +37,7 @@
 </template>
 
 <script>
-  import crypto from 'crypto-js'    // 加解密模块
+  import crypto from 'crypto'    // 加解密模块
   import DES from '../../../source/javascript/DES'
   export default {
     name: 'init',

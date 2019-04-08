@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import crypto from 'crypto-js'    // 加解密模块
+  import crypto from 'crypto'    // 加解密模块
   export default {
     name: 'login',
     data() {
@@ -39,7 +39,7 @@
       login: function(event) {
         this.$http.post('/data/login', {
           account: this.account,
-          password: crypto.createHash('md5').update(this.password).digest('hex')
+          password: crypto.createHash('md5').update(this.password.toString()).digest('hex')
         }).then((res) => {
           this.iserr = res.body.iserr
           if (this.iserr) {

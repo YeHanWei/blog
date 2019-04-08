@@ -35,7 +35,7 @@
 </template>
 
 <script>
-  import crypto from 'crypto-js'    // 加解密模块
+  import crypto from 'crypto'    // 加解密模块
   export default {
     name: 'fine-pwd',
     data() {
