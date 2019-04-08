@@ -1,26 +1,31 @@
-const crypto = require('crypto')
+import crypto from 'crypto-js'
 
 const key = 'jdu5896d'    // 长度为8的字符串
 
-// DES 加密
-function desEncrypt (message) {
-  const keyHex = new Buffer(key)
-  const cipher = crypto.createCipheriv('des-cbc', keyHex, keyHex)
-  let c = cipher.update(message, 'utf8', 'base64')
-  c += cipher.final('base64')
-  return c
+// DES加密 Pkcs7填充方式
+function encryptByDES(message) {
+  const keyHex = crypto.enc.Utf8.parse(key)
+  const encrypted = crypto.DES.encrypt(message, keyHex, {
+    mode: crypto.mode.ECB,
+    padding: crypto.pad.Pkcs7
+  })
+  return encrypted.toString()
 }
 
-// DES 解密
-function desDecrypt (text) {
-  const keyHex = new Buffer(key)
-  const cipher = crypto.createDecipheriv('des-cbc', keyHex, keyHex)
-  let c = cipher.update(text, 'base64', 'utf8')
-  c += cipher.final('utf8')
-  return c
+// DES解密
+function decryptByDES(ciphertext) {
+  const keyHex = crypto.enc.Utf8.parse(key)
+  // direct decrypt ciphertext
+  const decrypted = crypto.DES.decrypt({
+    ciphertext: crypto.enc.Base64.parse(ciphertext)
+  }, keyHex, {
+    mode: crypto.mode.ECB,
+    padding: crypto.pad.Pkcs7
+  })
+  return decrypted.toString(crypto.enc.Utf8)
 }
 
 export default {
-  desEncrypt: desEncrypt,
-  desDecrypt: desDecrypt
+  encryptByDES: encryptByDES,
+  decryptByDES: decryptByDES
 }

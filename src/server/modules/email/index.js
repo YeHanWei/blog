@@ -25,7 +25,7 @@ async function mailTransport(){
       secureConnection: true, // 使用SSL方式（安全方式，防止被窃取信息）
       auth: {
         user: conf.result.email,
-        pass: DES.desDecrypt(conf.result.email_password)  // 对邮箱授权码进行解密再填入
+        pass: DES.decryptByDES(conf.result.email_password)  // 对邮箱授权码进行解密再填入
       }
     });
   }

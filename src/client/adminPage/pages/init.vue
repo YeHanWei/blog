@@ -72,16 +72,18 @@
           this.isnull = true
         } else {
           // 验证无误后发送http请求
+          let epwd = DES.encryptByDES(this.email_password.toString())
+          alert(epwd)
           this.$http.post('/data/init', {
             account: this.account,
-            password: crypto.createHash('md5').update(this.password).digest('hex'), // 密码使用MD5进行加密
+            password: crypto.createHash('md5').update(this.password.toString()).digest('hex'), // 密码使用MD5进行加密
             email: this.email,
-            email_password: DES.desEncrypt(this.email_password)     // 邮箱验证码使用DES进行加密
+            email_password: epwd     // 邮箱验证码使用DES进行加密
           }).then((res) => {
             this.isEmailErr = res.body.isEmailErr
             this.iserr = res.body.iserr
             if (!this.isEmailErr && !this.iserr) {
-              window.location = '/admin/login'
+              this.$router.push('/login')
             }
           }, (res) => {
             this.iserr = true
