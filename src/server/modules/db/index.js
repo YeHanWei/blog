@@ -10,6 +10,8 @@ module.exports = {
   userInit: user.userInit,
   getEmail: user.getEmail,
   getAccountPwd: user.getAccountPwd,
+  updatePwd: user.updatePwd,
+  updateEmail: user.updateEmail,
   updateAboutMe: user.updateAboutMe,
   getAboutMe: user.getAboutMe,
   getArticle: article.getArticle,

@@ -29,8 +29,8 @@ dataRouter.post('/init', (req, res, next) => {
 
 // 管理员登陆验证
 dataRouter.post('/login', (req, res) => {
-  op.getAccountPwd().then(result => {
-    if(req.body.account === result.result.account && req.body.password === result.result.password){
+  op.getAccountPwd().then(obj => {
+    if(req.body.account === obj.result.account && req.body.password === obj.result.password){
       res.send({iserr: false});
     } else {
       res.send({iserr: true});
@@ -39,6 +39,34 @@ dataRouter.post('/login', (req, res) => {
     res.send({iserr: iserr});
   });
 });
+
+// 修改密码
+dataRouter.post('/updatePwd', (req, res) => {
+  op.getAccountPwd().then(obj => {
+    // 比对原密码
+    if(req.body.old_password !== obj.result.password) {
+      res.send({iserr: "原密码错误"})
+    } else {
+      // 更改密码
+      op.updatePwd(req.body.new_password).then(obj => {
+        res.send({iserr: false})
+      }).catch(obj => {
+        res.send({iserr: '密码更改失败'})
+      })
+    }
+  }).catch(obj => {
+    res.send({iserr: '密码更改失败'})
+  })
+})
+
+// 修改邮箱
+dataRouter.post('/updateEmail', (req, res) => {
+  op.updateEmail(req.body).then(obj => {
+    res.send({iserr: false})
+  }).catch((obj) => {
+    res.send({iserr: true})
+  })
+})
 
 // 获取文章列表
 dataRouter.all('/getArticle', (req, res) => {

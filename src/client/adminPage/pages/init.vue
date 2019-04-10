@@ -114,13 +114,16 @@
     padding: 20px;
     background: white;
   }
+  form div{
+    margin: 20px 0 20px 0;
+  }
+  form div:nth-child(1){
+    margin: 0;
+  }
   .user-op{
     display: block;
     font-size: 18px;
     padding: 2px 0 2px 0;
-  }
-  form div{
-    margin: 20px 0 20px 0;
   }
   label{
     display: inline-block;

@@ -27,4 +27,7 @@ adminRouter.get('/aboutMe', function (req, res, next) {
 adminRouter.get('/draftBox', function (req, res, next) {
   res.render('admin-index');
 });
+adminRouter.get('/config', function (req, res, next) {
+  res.render('admin-index');
+});
 export default adminRouter

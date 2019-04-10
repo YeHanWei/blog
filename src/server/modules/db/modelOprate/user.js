@@ -6,6 +6,8 @@ module.exports = {
   userInit: userInit,
   getEmail: getEmail,
   getAccountPwd: getAccountPwd,
+  updatePwd: updatePwd,
+  updateEmail: updateEmail,
   updateAboutMe: updateAboutMe,
   getAboutMe: getAboutMe
 };
@@ -81,11 +83,44 @@ function getEmail() {
 function getAccountPwd() {
   return new Promise((resolve, reject) => {
     Users.findOne({attributes: ['account', 'password']}).then(result => {
-      console.log(result);
       resolve({result: result.dataValues})
     }).catch(err => {
       reject({iserr: true});
-      throw err;
+    })
+  })
+}
+
+/**
+ * 更改登陆密码
+ * @param newPwd 新密码
+ * @return {Promise<boolean>} 成功：false;失败：true;
+ */
+function updatePwd(newPwd) {
+  return new Promise((resolve, reject) => {
+    Users.update({
+      password: newPwd
+    }, {where: {}}).then(() => {
+      resolve({iserr: false})
+    }).catch(() => {
+      reject({iserr: true})
+    })
+  })
+}
+
+/**
+ * 更新邮箱及邮箱授权码
+ * @param obj 包含email和email_password属性
+ * @return {Promise<boolean>} 成功：false；失败：true
+ */
+function updateEmail(obj) {
+  return new Promise((resolve, reject) => {
+    Users.update({
+      email: obj.email,
+      email_password: obj.email_password
+    }, {where: {}}).then(() => {
+      resolve({iserr: false})
+    }).catch(() => {
+      reject({iserr: true})
     })
   })
 }
