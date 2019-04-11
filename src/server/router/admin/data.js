@@ -59,6 +59,22 @@ dataRouter.post('/updatePwd', (req, res) => {
   })
 })
 
+// 获取博客配置信息
+dataRouter.get('/getBlogConfig', (req, res) => {
+  op.getBlogConfig().then(result => {
+    res.send({row: result})
+  })
+})
+
+// 更改博客配置信息
+dataRouter.post('/updateBlogConfig', (req, res) => {
+  op.updateBlogConfig(req.body).then(() => {
+    res.send({iserr: false})
+  }).catch(() => {
+    res.send({iserr: true})
+  })
+})
+
 // 修改邮箱
 dataRouter.post('/updateEmail', (req, res) => {
   op.updateEmail(req.body).then(obj => {

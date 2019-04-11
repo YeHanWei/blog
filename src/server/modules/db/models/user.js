@@ -2,38 +2,46 @@ const {connection} = require('./connection')
 const TYPE = require('sequelize')
 
 let users = connection.define('users', {
-  account: {
+  account: {                // 账号
     type: TYPE.STRING(16),
     primaryKey: true
   },
-  password: {
+  password: {               // 密码
     type: TYPE.TEXT,
     allowNull: false
   },
-  email: {
+  email: {                  // 邮箱账号
     type: TYPE.STRING(50),
     allowNull: false,
     validate: {
       isEmail: true
     }
   },
-  email_password: {
+  email_password: {         // 邮箱授权码
     type: TYPE.TEXT,
     allowNull: false
   },
-  name: {
+  name: {                   // 博主昵称
     type: TYPE.STRING(20),
-    allowNull: false
+    allowNull: true
   },
-  description: {
+  blog_title: {             // 博客标题
     type: TYPE.STRING(200),
     allowNull: true
   },
-  about_me_md: {
+  blog_sub_title: {         // 博客子标题
     type: TYPE.TEXT,
     allowNull: true
   },
-  about_me_html: {
+  blog_footer: {            // 博客页脚
+    type: TYPE.TEXT,
+    allowNull: true
+  },
+  about_me_md: {            // 关于我md格式
+    type: TYPE.TEXT,
+    allowNull: true
+  },
+  about_me_html: {          // 关于我html格式
     type: TYPE.TEXT,
     allowNull: true
   }

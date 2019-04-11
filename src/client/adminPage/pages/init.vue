@@ -73,7 +73,6 @@
         } else {
           // 验证无误后发送http请求
           let epwd = DES.encryptByDES(this.email_password.toString())
-          alert(epwd)
           this.$http.post('/data/init', {
             account: this.account,
             password: crypto.createHash('md5').update(this.password.toString()).digest('hex'), // 密码使用MD5进行加密

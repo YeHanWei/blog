@@ -9,7 +9,9 @@ module.exports = {
   updatePwd: updatePwd,
   updateEmail: updateEmail,
   updateAboutMe: updateAboutMe,
-  getAboutMe: getAboutMe
+  getAboutMe: getAboutMe,
+  getBlogConfig: getBlogConfig,
+  updateBlogConfig: updateBlogConfig
 };
 
 
@@ -160,6 +162,43 @@ function getAboutMe(type) {
       resolve({iserr: false, about_me: result.dataValues['about_me_'+type]})
     }).catch(err => {
       console.log(err);
+      reject({iserr: true})
+    })
+  })
+}
+
+/**
+ * 获取博客配置信息：昵称、主标题、副标题、页脚
+ * @return {Promise<Object>}
+ */
+function getBlogConfig() {
+  return new Promise((resolve, reject) => {
+    Users.findOne().then(user => {
+      resolve({
+        name: user.get('name'),
+        blog_title: user.get('blog_title'),
+        blog_sub_title: user.get('blog_sub_title'),
+        blog_footer: user.get('blog_footer')
+      })
+    })
+  })
+}
+
+/**
+ * 更新博客配置信息，包括昵称、主标题、副标题、页脚
+ * @param obj 新数据
+ * @return {Promise<any>}
+ */
+function updateBlogConfig(obj) {
+  return new Promise((resolve, reject) => {
+    Users.update({
+      name: obj.name,
+      blog_title: obj.blog_title,
+      blog_sub_title: obj.blog_sub_title,
+      blog_footer: obj.blog_footer
+    }, {where: {}}).then(() => {
+      resolve({iserr: false})
+    }).catch(() => {
       reject({iserr: true})
     })
   })

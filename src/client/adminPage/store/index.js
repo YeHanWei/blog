@@ -5,6 +5,7 @@ import tag from './modules/tag/index'
 import comment from './modules/comment/index'
 import friendlyLink from './modules/friendlyLink/index'
 import pageState from './modules/pageState/index'
+import config from './modules/config/index'
 
 Vue.use(VueX)
 
@@ -14,6 +15,7 @@ export default new VueX.Store({
     tag: tag,
     comment: comment,
     friendlyLink: friendlyLink,
+    config: config,
     pageState: pageState
   }
 })
