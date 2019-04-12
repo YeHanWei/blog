@@ -15,7 +15,7 @@
       </div>
       <div>
         <label>页脚</label>
-        <input type="text" v-model="blogFooter"/>
+        <input type="text" v-model="blogFooter" placeholder="支持HTML格式"/>
       </div>
       <div>
         <p class="err" v-show="updateErr">更新失败</p>

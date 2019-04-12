@@ -17,7 +17,13 @@
   import FollowMouse from '../components/follow-mouse'
   export default {
     name: 'blog-main',
-    components: {BlogHeader, ToTop, BlogFooter, FollowMouse}
+    components: {BlogHeader, ToTop, BlogFooter, FollowMouse},
+
+    created() {
+      this.$http.get('/data/getBlogConfig').then(res => {
+        this.$store.commit('blogConfig', res.body.row)
+      })
+    }
   }
 </script>
 

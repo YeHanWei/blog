@@ -1,13 +1,13 @@
 <template>
   <footer>
+    <!--  友链  -->
     <div>
       <a class="friendly-link-item" v-for="link in links" :href="link.link_url" target="_blank">
         {{link.link_name}}
       </a>
     </div>
-    <div class="authorize">
-      Copyright &#169 2019 叶汉伟
-    </div>
+    <!--  页脚版权信息等  -->
+    <div class="authorize" v-html="this.$store.state.blogConfig.blog_footer"></div>
   </footer>
 </template>
 

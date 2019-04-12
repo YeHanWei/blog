@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <router-link id="blog-title" calss="navbar-brand" to="/">个人博客系统</router-link>
+          <router-link id="blog-title" calss="navbar-brand" to="/">{{this.$store.state.blogConfig.blog_title}}</router-link>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-font">
