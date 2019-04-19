@@ -17,7 +17,9 @@ const store = new VueX.Store({
     archive: [],
     tagArticles: [],
     aboutMe: '',
-    blogConfig: {}
+    blogConfig: {},
+    searchResults: [],
+    searchText: ''
   },
   mutations: {
     articles(state, data) {
@@ -37,6 +39,12 @@ const store = new VueX.Store({
     },
     blogConfig(state, data) {
       state.blogConfig = data
+    },
+    searchResults(state, data) {
+      state.searchResults = data
+    },
+    searchText(state, data) {
+      state.searchText = data
     }
   }
 })

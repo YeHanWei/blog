@@ -7,6 +7,7 @@ import tags from '../pages/tags'
 import aboutMe from '../pages/about-me'
 import Archive from '../pages/archive'
 import article from '../pages/articleDetail'
+import search from '../pages/search'
 
 Vue.use(Router)
 
@@ -44,6 +45,10 @@ export default new Router({
         {
           path: 'article',
           component: article
+        },
+        {
+          path: 'search',
+          component: search
         }
       ]
     }

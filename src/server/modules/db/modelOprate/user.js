@@ -1,5 +1,5 @@
 const model = require('../models/model');
-const {connection} = require('../models/connection');
+const {connection, TYPE} = require('../models/connection');
 
 module.exports = {
   blogInit: blogInit,
@@ -26,7 +26,15 @@ function blogInit() {
   return new Promise((resolve, reject) => {
     connection.drop().then(() => {
       model.sync().then((iserr) => {
-        resolve(iserr)
+        // 为article表的title、summary、md列创建全文本搜索索引
+        connection.query('create fulltext index indexName on ' +
+          'articles(article_title, article_summary, article_md) with parser ngram', {
+          type: TYPE.QueryTypes.INSERT
+        }).then(() => {
+          resolve(true)
+        }).catch(() => {
+          throw new Error('创建全文本索引错误')
+        });
       }).catch((iserr) => {
         reject(iserr)
       })
@@ -203,3 +211,4 @@ function updateBlogConfig(obj) {
     })
   })
 }
+

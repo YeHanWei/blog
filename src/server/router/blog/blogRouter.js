@@ -1,6 +1,7 @@
 // 博客页面，页面请求路由
 
 import express from 'express'
+import adminRouter from "../admin/adminRouter";
 
 const blogRouter = express.Router();
 /* 登陆 */
@@ -37,5 +38,7 @@ blogRouter.get('/article', function(req, res, next) {
 blogRouter.get('/tagDetail', function(req, res, next) {
   res.render('blog-index')
 });
-
+blogRouter.get('/search', function (req, res, next) {
+  res.render('blog-index');
+});
 export default blogRouter

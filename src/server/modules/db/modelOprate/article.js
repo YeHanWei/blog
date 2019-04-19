@@ -10,7 +10,8 @@ module.exports = {
   publicArticle: publicArticle,
   deleteArticle: deleteArticle,
   getArchive: getArchive,
-  getArticleDetail: getArticleDetail
+  getArticleDetail: getArticleDetail,
+  search: search
 }
 
 /**
@@ -218,6 +219,21 @@ function getArticleDetail(id) {
           })
         })
       })
+    })
+  })
+}
+
+function search(search_text) {
+  return new Promise((resolve, reject) => {
+    connection.query("select article_id,article_title,article_summary from articles " +
+      "where Match(article_title, article_md, article_summary) Against(?);", {
+      replacements: [search_text], type: TYPE.QueryTypes.SELECT
+    }).then((results) => {
+      let rows = tool.handleResult(results);
+      resolve({results: results});
+    }).catch((err) => {
+      console.log(err)
+      reject({iserr: true});
     })
   })
 }

@@ -38,7 +38,7 @@
               </router-link>
             </li>
             <li>
-              <router-link to="#" >
+              <router-link to="/search" >
                 <span class="glyphicon glyphicon-search"></span>
                 <span>&nbsp;&nbsp;站内搜索</span>
               </router-link>

@@ -16,6 +16,7 @@ module.exports = {
   getAboutMe: user.getAboutMe,
   getBlogConfig: user.getBlogConfig,
   updateBlogConfig: user.updateBlogConfig,
+  search: article.search,
   getArticle: article.getArticle,
   publicArticle: article.publicArticle,
   deleteArticle: article.deleteArticle,

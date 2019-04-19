@@ -2,6 +2,8 @@
 import express from 'express'
 import email from '../../modules/email/index'
 import op from '../../modules/db/index'
+import adminRouter from "../admin/adminRouter";
+import dataRouter from "../admin/data";
 
 const blogData = express.Router();
 
@@ -73,3 +75,11 @@ blogData.post('/publicComment', (req, res) => {
   })
 });
 
+// 搜索
+blogData.post('/search', (req, res)=> {
+  op.search(req.body.search_text).then((obj) => {
+    res.send({results: obj.results})
+  }).catch(() => {
+    res.send({iserr: true})
+  })
+})
