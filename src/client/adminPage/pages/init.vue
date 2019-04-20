@@ -19,15 +19,6 @@
         --><input id="repwd" type="password" v-model="rePwd"/>
       </div>
       <p v-show="!isSame">*重复密码与密码不一致</p>
-      <div>
-        <label for="email">邮箱</label><!--
-        --><input id="email" type="email" v-model="email"/>
-      </div>
-      <div>
-        <label for="email_password">邮箱授权码</label><!--
-        --><input id="email_password" type="password" v-model="email_password"/>
-      </div>
-      <p v-show="isEmailErr">*邮箱登陆错误，请检查邮箱与授权码是否错误</p>
       <p v-show="iserr">*初始化失败，请重试！</p>
       <div class="btn-content">
         <button type="button" v-on:click="initConf">提交</button>
@@ -38,7 +29,6 @@
 
 <script>
   import crypto from 'crypto'    // 加解密模块
-  import DES from '../../../source/javascript/DES'
   export default {
     name: 'init',
     data() {
@@ -46,18 +36,18 @@
         account: '',
         password: '',
         rePwd: '',
-        email: '',
-        email_password: '',
         isAccoutErr: false,
         isPwdErr: false,
         isSame: true,
-        isEmailErr: false,
-        iserr: false,
-        isnull: false
+        iserr: false
       }
     },
     methods: {
       initConf: function (event) {
+        this.isSame = true
+        this.isAccoutErr = false
+        this.isPwdErr = false
+        this.iserr = false
         if (/\W/.test(this.account) || this.account.length < 1 || this.account.length > 16) {
           // 账号格式错误
           this.isAccoutErr = true
@@ -67,21 +57,14 @@
         } else if (this.password !== this.rePwd) {
           // 重复密码与密码不一致
           this.isSame = false
-        } else if (this.email === '' || this.email_password === '') {
-          // 邮箱、邮箱授权码、如果为空，错误
-          this.isnull = true
         } else {
           // 验证无误后发送http请求
-          let epwd = DES.encryptByDES(this.email_password.toString())
           this.$http.post('/data/init', {
             account: this.account,
-            password: crypto.createHash('md5').update(this.password.toString()).digest('hex'), // 密码使用MD5进行加密
-            email: this.email,
-            email_password: epwd     // 邮箱验证码使用DES进行加密
+            password: crypto.createHash('md5').update(this.password.toString()).digest('hex') // 密码使用MD5进行加密
           }).then((res) => {
-            this.isEmailErr = res.body.isEmailErr
             this.iserr = res.body.iserr
-            if (!this.isEmailErr && !this.iserr) {
+            if (!this.iserr) {
               this.$router.push('/login')
             }
           }, (res) => {

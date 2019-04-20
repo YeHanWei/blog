@@ -25,36 +25,14 @@ module.exports.sync = () => {
             Tags.sync().then(() => {
               TagArticles.sync().then(() => {
                 Comments.sync().then(() => {
-                  let iserr = false
-                  resolve(iserr)
-                }).catch(() => {
-                  let iserr = true;
-                  reject(iserr)
-                });
-              }).catch(() => {
-                let iserr = true;
-                reject(iserr)
-              });
-            }).catch(() => {
-              let iserr = true;
-              reject(iserr)
-            });
-          }).catch(() => {
-            let iserr = true;
-            reject(iserr)
-          });
-        }).catch(() => {
-          let iserr = true;
-          reject(iserr)
-        });
-      }).catch(() => {
-        let iserr = true;
-        reject(iserr)
-      });
-    }).catch(() => {
-      let iserr = true;
-      reject(iserr)
-    });
+                  resolve(false)
+                })
+              })
+            })
+          })
+        })
+      })
+    })
   })
 };
 

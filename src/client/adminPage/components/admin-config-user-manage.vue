@@ -23,26 +23,6 @@
         <button type="button" @click="updatePwd">修改密码</button>
       </div>
     </div>
-    <!-- 更改邮箱 -->
-    <div>
-      <div>
-        <label>邮箱</label>
-        <input type="email" v-model="email"/>
-      </div>
-      <div>
-        <label>邮箱授权码</label>
-        <input type="password" v-model="emailPwd"/>
-      </div>
-      <div>
-        <label>重复邮箱授权码</label>
-        <input type="password" v-model="reEmailPwd"/>
-      </div>
-      <div>
-        <p class="err">{{emailErr}}</p>
-        <p class="suc" v-show="emailSuc">邮箱更改成功</p>
-        <button type="button" @click="updateEmail">更改邮箱</button>
-      </div>
-    </div>
   </form>
 </template>
 

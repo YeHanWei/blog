@@ -8,10 +8,8 @@ import comment from './modelOprate/comment'
 module.exports = {
   blogInit: user.blogInit,
   userInit: user.userInit,
-  getEmail: user.getEmail,
   getAccountPwd: user.getAccountPwd,
   updatePwd: user.updatePwd,
-  updateEmail: user.updateEmail,
   updateAboutMe: user.updateAboutMe,
   getAboutMe: user.getAboutMe,
   getBlogConfig: user.getBlogConfig,

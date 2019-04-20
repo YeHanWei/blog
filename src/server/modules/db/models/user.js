@@ -10,17 +10,6 @@ let users = connection.define('users', {
     type: TYPE.TEXT,
     allowNull: false
   },
-  email: {                  // 邮箱账号
-    type: TYPE.STRING(50),
-    allowNull: false,
-    validate: {
-      isEmail: true
-    }
-  },
-  email_password: {         // 邮箱授权码
-    type: TYPE.TEXT,
-    allowNull: false
-  },
   name: {                   // 博主昵称
     type: TYPE.STRING(20),
     allowNull: true

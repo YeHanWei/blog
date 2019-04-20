@@ -29,12 +29,10 @@ function saveDraft(obj) {
         draft_time: time,
         draft_tags: obj.draft_tags,
       }, {where: {draft_id: obj.draft_id}}).then(() => {
-        let iserr = false;
-        resolve(iserr)
+        resolve(false)
       }).catch((err) => {
-        console.log(err)
-        let iserr = true;
-        reject(iserr)
+        console.log(err);
+        reject(true)
       });
     } else { // 没有id，新建草稿
       let {id, time} = tool.createIdAadTime();
@@ -46,12 +44,10 @@ function saveDraft(obj) {
         draft_time: time,
         draft_tags: obj.draft_tags
       }).then(() => {
-        let iserr = false;
-        resolve(iserr)
-      }).catch(err => {
+        resolve(false)
+      }).catch((err) => {
         console.log(err);
-        let iserr = true;
-        reject(iserr)
+        reject(true)
       })
     }
   })
@@ -64,7 +60,7 @@ function getDraftList() {
       let result = tool.handleResult(rows);
       resolve(result)
     }).catch(err => {
-      throw err;
+      console.log(err);
     })
   })
 }
@@ -76,7 +72,7 @@ function getDraft(id) {
       let result = tool.handleResult(rows);
       resolve(result)
     }).catch(err => {
-      throw err;
+      console.log(err)
     })
   })
 }
@@ -89,8 +85,7 @@ function deleteDraft(id) {
       resolve(iserr)
     }).catch(err => {
       console.log(err);
-      let iserr = true;
-      reject(iserr)
+      reject(true)
     })
   })
 }

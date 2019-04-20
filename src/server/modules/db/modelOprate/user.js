@@ -4,10 +4,8 @@ const {connection, TYPE} = require('../models/connection');
 module.exports = {
   blogInit: blogInit,
   userInit: userInit,
-  getEmail: getEmail,
   getAccountPwd: getAccountPwd,
   updatePwd: updatePwd,
-  updateEmail: updateEmail,
   updateAboutMe: updateAboutMe,
   getAboutMe: getAboutMe,
   getBlogConfig: getBlogConfig,
@@ -25,23 +23,17 @@ let Users = model.Users;
 function blogInit() {
   return new Promise((resolve, reject) => {
     connection.drop().then(() => {
-      model.sync().then((iserr) => {
+      model.sync().then(() => {
         // 为article表的title、summary、md列创建全文本搜索索引
         connection.query('create fulltext index indexName on ' +
           'articles(article_title, article_summary, article_md) with parser ngram', {
           type: TYPE.QueryTypes.INSERT
         }).then(() => {
-          resolve(true)
+          resolve(false)
         }).catch(() => {
-          throw new Error('创建全文本索引错误')
+          reject(true)
         });
-      }).catch((iserr) => {
-        reject(iserr)
       })
-    }).catch((err) => {
-      console.log(err);
-      let iserr = true;
-      reject(iserr)
     })
   })
 }
@@ -56,8 +48,6 @@ function userInit(user) {
     Users.create({
         account: user.account,
         password: user.password,
-        email: user.email,
-        email_password: user.email_password,
         name: user.account
       }).then(p => {
         console.log('created. ' + JSON.stringify(p));
@@ -69,21 +59,6 @@ function userInit(user) {
         reject(iserr)
       })
   })
-}
-
-/**
- * 获取用户email及授权码
- * @return {Promise<Object>}
- */
-function getEmail() {
-  return new Promise((resolve, reject) => {
-    Users.findOne({attributes: ['email', 'email_password']}).then((result) => {
-      console.log(result);
-      resolve({iserr: true, result: result.dataValues})
-    }).catch(err => {
-      reject({iserr: true})
-    })
-  });
 }
 
 /**
@@ -109,24 +84,6 @@ function updatePwd(newPwd) {
   return new Promise((resolve, reject) => {
     Users.update({
       password: newPwd
-    }, {where: {}}).then(() => {
-      resolve({iserr: false})
-    }).catch(() => {
-      reject({iserr: true})
-    })
-  })
-}
-
-/**
- * 更新邮箱及邮箱授权码
- * @param obj 包含email和email_password属性
- * @return {Promise<boolean>} 成功：false；失败：true
- */
-function updateEmail(obj) {
-  return new Promise((resolve, reject) => {
-    Users.update({
-      email: obj.email,
-      email_password: obj.email_password
     }, {where: {}}).then(() => {
       resolve({iserr: false})
     }).catch(() => {

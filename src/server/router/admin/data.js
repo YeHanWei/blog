@@ -1,5 +1,4 @@
 import express from 'express'
-import email from '../../modules/email/index'
 import op from '../../modules/db/index'
 
 
@@ -10,14 +9,7 @@ dataRouter.post('/init', (req, res, next) => {
   (async function(){
     op.blogInit().then(() => {
       op.userInit(req.body).then(iserr => {
-        let isErr = iserr;
-        email.emailInit().then(iserr => {
-          let isEmailErr = iserr;
-          console.log(isErr + '  ' + isEmailErr);
-          res.send({iserr: isErr, isEmailErr: isEmailErr});
-        }).catch((isEmailErr => {
-          res.send({iserr: isErr, isEmailErr: isEmailErr});
-        }))
+        res.send({iserr: iserr});
       }).catch((iserr) => {
         res.send({iserr: iserr});
       });

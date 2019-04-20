@@ -1,15 +1,10 @@
 // 博客页面，页面请求路由
 
 import express from 'express'
-import adminRouter from "../admin/adminRouter";
 
 const blogRouter = express.Router();
 /* 登陆 */
 blogRouter.get('/login', function(req, res, next) {
-  res.render('admin-index');
-});
-/* 找回密码 */
-blogRouter.get('/findPwd', function(req, res, next) {
   res.render('admin-index');
 });
 /* 初始化 */

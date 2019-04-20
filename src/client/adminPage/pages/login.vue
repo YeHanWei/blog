@@ -10,9 +10,6 @@
         <input id="password" type="password" placeholder="请输入密码" v-model="password"/>
       </div>
       <p v-show="iserr">*账号与密码不匹配</p>
-      <div style="float: right">
-        <span>忘记密码？<router-link to="/findPwd">找回密码</router-link></span><br/>
-      </div>
       <button type="button" v-on:click="login">登 陆</button>
     </form>
   </div>
