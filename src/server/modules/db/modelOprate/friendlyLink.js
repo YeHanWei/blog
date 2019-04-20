@@ -1,7 +1,6 @@
 import tool from "../tools";
 
 const model = require('../models/model')
-const {connection} = require('../models/connection')
 
 let {FriendlyLinks} = model;
 
@@ -26,12 +25,10 @@ function addFriendlyLink(friendlyLink) {
       link_name: friendlyLink.link_name,
       link_description: friendlyLink.link_description
     }).then(() => {
-      let iserr = false;
-      resolve(iserr)
+      resolve(false)
     }).catch((err) => {
       console.log(err);
-      let iserr = true;
-      reject(iserr)
+      reject(true)
     })
   })
 }
@@ -62,12 +59,10 @@ function deleteFriendlyLink(id) {
     FriendlyLinks.destroy({
       where: {link_id: id}
     }).then(() => {
-      let iserr = false;
-      resolve(iserr)
+      resolve(false)
     }).catch(err => {
       console.log(err);
-      let iserr = true;
-      reject(iserr)
+      reject(true)
     })
   })
 }
@@ -79,18 +74,15 @@ function deleteFriendlyLink(id) {
  */
 function updateFriendlyLink(friendlyLink) {
   return new Promise((resolve, reject) => {
-    console.log(friendlyLink.link_id)
     FriendlyLinks.update({
       link_url: friendlyLink.link_url,
       link_name: friendlyLink.link_name,
       link_description: friendlyLink.link_description
     }, {where: {link_id: friendlyLink.link_id}}).then(() => {
-      let iserr = false;
-      resolve(iserr)
+      resolve(false)
     }).catch((err) => {
       console.log(err);
-      let iserr = true;
-      reject(iserr)
+      reject(true)
     })
   })
 }

@@ -3,7 +3,7 @@ import tool from "../tools";
 const model = require('../models/model')
 const {connection, TYPE} = require('../models/connection')
 
-let {Articles, Comments, TagArticles, Tags} = model;
+let {TagArticles, Tags} = model;
 
 module.exports = {
   addTag: addTag,
@@ -27,11 +27,9 @@ function addTag(tag) {
       tag_name: tag.tag_name,
       tag_description: tag.tag_description
     }).then(() => {
-      let iserr = false;
-      resolve(iserr)
+      resolve(false)
     }).catch(() => {
-      let iserr = true;
-      reject(iserr);
+      reject(true);
     })
   })
 }
@@ -81,13 +79,11 @@ function deleteTag(id) {
     connection.transaction().then((t) => {
       return TagArticles.destroy({ where: { tag_id: id } }, {transaction: t}).then(() => {
         return Tags.destroy({ where: { tag_id: id } }, {transaction: t}).then(() => {
-          let iserr = false;
-          resolve(iserr)
+          resolve(false)
         })
       })
     }).catch(() => {
-      let iserr = true;
-      reject(iserr)
+      reject(true)
     })
   })
 }
@@ -106,8 +102,8 @@ function updateTag(tag) {
       let iserr = false;
       resolve(iserr)
     }).catch((err) => {
-      let iserr = true;
-      reject(iserr);
+      console.log(err)
+      reject(true);
     })
   })
 }
@@ -136,7 +132,7 @@ function getTagArticles() {
           resolve(tagArticles)
         });
     }).catch(err => {
-      throw err;
+      console.log(err)
     })
   })
 }

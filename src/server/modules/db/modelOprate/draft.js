@@ -1,7 +1,6 @@
 import tool from "../tools";
 
 const model = require('../models/model')
-const {connection, TYPE} = require('../models/connection')
 
 let {Draft} = model;
 

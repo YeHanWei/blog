@@ -51,12 +51,10 @@ function userInit(user) {
         name: user.account
       }).then(p => {
         console.log('created. ' + JSON.stringify(p));
-        let iserr = false;
-        resolve(iserr)
+        resolve(false)
       }).catch(err => {
         console.log(err);
-        let iserr = true;
-        reject(iserr)
+        reject(true)
       })
   })
 }
@@ -104,12 +102,10 @@ function updateAboutMe(md, html) {
       about_me_html: html,
       about_me_md: md
     }, {where: {}}).then(() => {
-      let iserr = false;
-      resolve(iserr)
+      resolve(false)
     }).catch(err => {
       console.log(err);
-      let iserr = true;
-      reject(iserr)
+      reject(true)
     })
   })
 }

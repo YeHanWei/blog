@@ -114,7 +114,6 @@ function publicArticle(article) {
       let iserr = true;
       reject(iserr)
     }, (tags) => { // 成功回调
-      console.log(tags)
       connection.transaction().then((t) => {
         console.log('事务开始')
         // 删除tag_articles表中对应的记录（如果存在）
@@ -229,7 +228,6 @@ function search(search_text) {
       "where Match(article_title, article_md, article_summary) Against(?);", {
       replacements: [search_text], type: TYPE.QueryTypes.SELECT
     }).then((results) => {
-      let rows = tool.handleResult(results);
       resolve({results: results});
     }).catch((err) => {
       console.log(err)

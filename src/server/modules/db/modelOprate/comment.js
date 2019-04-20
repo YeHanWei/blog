@@ -18,26 +18,20 @@ function getComments(article_id) {
         "from articles, comments where comments.article_id = articles.article_id;", {
         type: TYPE.QueryTypes.SELECT
       }).then((rows) => {
-          console.log(rows);
-        let iserr = false;
-        resolve({iserr: iserr, rows: rows})
+        resolve({iserr: false, rows: rows})
       }).catch(err => {
         console.log(err);
-        let iserr = true;
-        reject(iserr)
+        reject(true)
       })
     } else { // 传入参数
       connection.query("select comment_id, comment_content, comment_username, comment_time, email, articles.article_id, article_title " +
         "from articles, comments where comments.article_id = articles.article_id and comments.article_id=?;", {
         replacements: [article_id], type: TYPE.QueryTypes.SELECT
       }).then((rows) => {
-        console.log(rows);
-        let iserr = false;
-        resolve({iserr: iserr, rows: rows})
+        resolve({iserr: false, rows: rows})
       }).catch(err => {
         console.log(err);
-        let iserr = true;
-        reject(iserr)
+        reject(true)
       })
     }
   });// promise
@@ -51,12 +45,10 @@ function getComments(article_id) {
 function deleteComment(id) {
   return new Promise((resolve, reject) => {
     Comments.destroy({where: {comment_id: id}}).then(() => {
-      let iserr = false;
-      resolve(iserr)
+      resolve(false)
     }).catch(err => {
       console.log(err);
-      let iserr = true;
-      reject(iserr)
+      reject(true)
     })
   })
 }
@@ -78,12 +70,10 @@ function publicComment(obj) {
       comment_time: comment_time,
       email: obj.comment_email
     }).then(() => {
-      let iserr = false;
-      resolve(iserr);
+      resolve(false);
     }).catch(err => {
       console.log(err);
-      let iserr = true;
-      reject(iserr)
+      reject(true)
     })
   });
 }

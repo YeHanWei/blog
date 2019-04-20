@@ -28,7 +28,6 @@
 
 <script>
   import crypto from 'crypto'    // 加解密模块
-  import DES from '../../../source/javascript/DES'
   export default {
     name: 'admin-config-user-manage',
     data() {
@@ -36,13 +35,8 @@
         oldPwd: '',
         newPwd: '',
         reNewPwd: '',
-        email: '',
-        emailPwd: '',
-        reEmailPwd: '',
         pwdErr: '',
-        emailErr: '',
-        pwdSuc: false,
-        emailSuc: false
+        pwdSuc: false
       }
     },
     methods: {
@@ -61,32 +55,14 @@
           }).then(res => {
             if (res.body.iserr === false) {
               this.pwdSuc = true
+              this.oldPwd = ''
+              this.newPwd = ''
+              this.reNewPwd = ''
             } else {
               this.pwdErr = res.body.iserr
             }
           }, res => {
             this.pwdErr = '密码修改失败'
-          })
-        }
-      },
-      // 更改邮箱及授权码
-      updateEmail() {
-        this.emailErr = ''
-        this.emailSuc = false
-        if (this.emailPwd !== this.reEmailPwd) {
-          this.emailErr = '邮箱授权码与重复邮箱授权码不一致'
-        } else {
-          this.$http.post('/data/updateEmail', {
-            email: this.email,
-            email_password: DES.encryptByDES(this.emailPwd.toString())
-          }).then(res => {
-            if (res.body.iserr === false) {
-              this.emailSuc = true
-            } else {
-              this.emailErr = '邮箱更改失败'
-            }
-          }, res => {
-            this.emailErr = '邮箱更改失败'
           })
         }
       }

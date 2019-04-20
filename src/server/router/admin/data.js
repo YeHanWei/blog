@@ -185,7 +185,6 @@ dataRouter.post('/updateFriendlyLink', (req, res) => {
 
 // 获取评论列表
 dataRouter.all('/commentsList', (req, res, ) => {
-  console.log(req.body.article_id);
   if(req.body.article_id){
     op.getComments(req.body.article_id).then(obj => {
       res.send({getListErr: obj.iserr, rows: obj.rows})
@@ -215,7 +214,6 @@ dataRouter.post('/updateAboutMe', (req, res) => {
   op.updateAboutMe(req.body.about_me_md, req.body.about_me_html).then(iserr => {
       res.send({updateErr: iserr})
     }).catch(iserr => {
-      console.log(iserr)
       res.send({updateErr: iserr})
     })
 });
