@@ -9,14 +9,9 @@
 <script>
   export default {
     name: 'to-top',
-    data() {
-      return {
-        sWidth: window.innerWidth
-      }
-    },
     computed: {
       disp: function () {
-        if (this.sWidth < 768) {
+        if (window.innerWidth < 768) {
           return 'none'
         } else {
           return 'inline-block'

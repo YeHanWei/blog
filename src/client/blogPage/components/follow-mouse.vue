@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-bind:style="{display: disp}">
       <div class="move"></div>
       <div class="move"></div>
       <div class="move"></div>
@@ -11,6 +11,15 @@
 <script>
   export default {
     name: 'follow-mouse',
+    computed: {
+      disp: function () {
+        if (window.innerWidth < 768) {
+          return 'none'
+        } else {
+          return 'inline-block'
+        }
+      }
+    },
     mounted: function () {
       function follow (oEvent, dom, size, color, delay) {
         let scrollleft = document.documentElement.clientLeft || document.body.clientLeft
