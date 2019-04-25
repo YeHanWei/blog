@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import BlogMain from '../pages/blog-main'
 import home from '../pages/home'
 import tags from '../pages/tags'
+import tagDetail from '../pages/tagDetail'
 import aboutMe from '../pages/about-me'
 import Archive from '../pages/archive'
 import article from '../pages/articleDetail'
@@ -28,7 +29,7 @@ export default new Router({
         },
         {
           path: 'tagDetail',
-          component: home
+          component: tagDetail
         },
         {
           path: 'tags',
