@@ -41,9 +41,10 @@
                 <input class="form-control" type="text" placeholder="昵称" v-model="commentUserName"/>
               </div>
               <div class="col-md-6">
-                <input class="form-control" type="text" placeholder="邮箱" v-model="commentEmail"/>
+                <input class="form-control" type="email" placeholder="邮箱" v-model="commentEmail"/>
               </div>
             </div>
+            <p :class="{err: isPublicErr, suc: !isPublicErr}">{{msg}}</p>
             <div class="form-group">
               <div class="col-md-offset-10 col-md-2">
                 <button type="button" class="btn btn-success btn-block" @click="publicComment">发表评论</button>
@@ -77,19 +78,26 @@
         commentUserName: '',
         commentEmail: '',
         commentContent: '',
-        isPublicErr: ''
+        isPublicErr: false,
+        msg: ''
       }
     },
     methods: {
       publicComment() {
-        if (this.commentUserName === '') {
-          this.isPublicErr = '昵称不能为空！'
+        if (this.commentContent === '') {
+          this.isPublicErr = true
+          this.msg = '评论内容不能为空！'
         } else if (this.commentEmail === '') {
-          this.isPublicErr = '邮箱不能为空！'
-        } else if (this.commentContent === '') {
-          this.isPublicErr = '评论内容不能为空！'
+          this.isPublicErr = true
+          this.msg = '邮箱不能为空！'
+        } else if (this.commentUserName === '') {
+          this.isPublicErr = true
+          this.msg = '昵称不能为空！'
+        } else if (/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(this.commentEmail) === false) {
+          this.isPublicErr = true
+          this.msg = '邮箱格式错误！'
         } else {
-          this.isPublicErr = ''
+          this.msg = ''
           this.$http.post('/blogData/publicComment', {
             article_id: this.article.article_id,
             comment_username: this.commentUserName,
@@ -97,12 +105,14 @@
             comment_content: this.commentContent
           }).then(res => {
             if (res.body.iserr === true) {
-              this.isPublicErr = '评论发表失败'
+              this.isPublicErr = true
+              this.msg = '评论发表失败'
             } else {
               this.commentContent = ''
               this.commentEmail = ''
               this.commentUserName = ''
-              this.isPublicErr = ''
+              this.isPublicErr = false
+              this.msg = '评论成功'
               this.$http.post('/data/commentsList', {article_id: this.article.article_id}).then(res => {
                 if (res.body.getListErr === false) {
                   this.comments = res.body.rows.reverse()
@@ -110,7 +120,8 @@
               })
             }
           }, res => {
-            this.isPublicErr = '评论发表失败'
+            this.msg = '评论发表失败'
+            this.isPublicErr = false
           })
         }
       }
@@ -153,5 +164,15 @@
   }
   textarea{
     font-size: 18px;
+  }
+  .err{
+    text-align: right;
+    color: red;
+    font-size: 10px;
+  }
+  .suc{
+    text-align: right;
+    color: green;
+    font-size: 10px;
   }
 </style>
