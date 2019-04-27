@@ -22,6 +22,7 @@
         <summary>{{result.article_summary}}</summary>
       </div>
     </section>
+    <p class="searchNull"v-if="this.$store.state.isSearchNull">抱歉！未找到相关结果。</p>
   </div>
 </template>
 
@@ -41,6 +42,11 @@
     methods: {
       search() {
         this.$http.post('/blogData/search', {search_text: this.searchText}).then(res => {
+          if (res.body.results.length === 0) {
+            this.$store.commit('isSearchNull', true)
+          } else {
+            this.$store.commit('isSearchNull', false)
+          }
           this.$store.commit('searchResults', res.body.results)
         })
       }
@@ -103,5 +109,10 @@
     font-size: 16px;
     color: #888;
     padding: 3px 0 3px 0;
+  }
+  .searchNull{
+    text-align: center;
+    font-size: 20px;
+    color: rgba(10, 10, 10, 0.5)
   }
 </style>

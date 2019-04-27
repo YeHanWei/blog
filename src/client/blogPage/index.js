@@ -19,7 +19,8 @@ const store = new VueX.Store({
     aboutMe: '',
     blogConfig: {},
     searchResults: [],
-    searchText: ''
+    searchText: '',
+    isSearchNull: false
   },
   mutations: {
     articles(state, data) {
@@ -45,6 +46,9 @@ const store = new VueX.Store({
     },
     searchText(state, data) {
       state.searchText = data
+    },
+    isSearchNull(state, data) {
+      state.isSearchNull = data
     }
   }
 })
