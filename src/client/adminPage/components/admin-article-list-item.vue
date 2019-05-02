@@ -46,6 +46,8 @@
                 <admin-comment-list-item
                         v-for="commentMessage in commentsList"
                         v-bind:message="commentMessage"
+                        v-bind:key="commentMessage.comment_id"
+                        v-on:getComments="getComments"
                 ></admin-comment-list-item>
                 </tbody>
               </table>

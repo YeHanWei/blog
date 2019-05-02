@@ -64,6 +64,7 @@
               this.$store.commit('comment/getListErr', res.body.getListErr)
               if (this.$store.state.comment.getListErr === false) {
                 this.$store.commit('comment/commentsList', res.body.rows)
+                this.$emit('getComments')
               }
             },
               (res) => {

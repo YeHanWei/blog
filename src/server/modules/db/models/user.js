@@ -15,7 +15,7 @@ let users = connection.define('users', {
     allowNull: true
   },
   blog_title: {             // 博客标题
-    type: TYPE.STRING(200),
+    type: TYPE.STRING(20),
     allowNull: true
   },
   blog_sub_title: {         // 博客子标题

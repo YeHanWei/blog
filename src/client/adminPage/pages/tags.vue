@@ -91,10 +91,9 @@
     created: function () {
       this.$store.commit('pageState/tagsActive', true)
       if (this.$store.state.tag.tagList.length === 0) {
-        this.$http.get('/data/tagsList').then(
-          (res) => {
-            this.$store.commit('tag/tagList', res.body)
-          })
+        this.$http.get('/data/tagsList').then((res) => {
+          this.$store.commit('tag/tagList', res.body)
+        })
       }
     },
     destroyed: function () {

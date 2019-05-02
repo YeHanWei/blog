@@ -8,7 +8,7 @@ let tags = connection.define('tags', {
     primaryKey: true
   },
   tag_name: {
-    type: TYPE.STRING(200),
+    type: TYPE.STRING(20),
     allowNull: false,
     unique: true
   },

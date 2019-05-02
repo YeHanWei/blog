@@ -13,6 +13,7 @@
       <admin-comment-list-item
               v-for="commentMessage in this.$store.state.comment.commentsList"
               v-bind:message="commentMessage"
+              v-bind:key="commentMessage.comment_id"
       ></admin-comment-list-item>
       </tbody>
     </table>

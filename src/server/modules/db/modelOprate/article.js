@@ -93,6 +93,7 @@ function publicArticle(article) {
       sucCallback(tags);
     }
   }
+  // 内部函数，添加文章标签映射表记录
   function addTagArticles(tags, article_id, index, sucCallback){
     if(index < tags.length){
       return connection.query('insert into tag_articles(article_id, tag_id) values(?,?);',{
@@ -107,7 +108,7 @@ function publicArticle(article) {
       sucCallback();
     }
   }
-  // 函数返回 Promise
+  // 函数返回 Promise，执行文章发布任务
   return new Promise((resolve, reject) => {
     chackTag(article.tags, tags, 0, () => { // 失败回调
       // console.log('chackTag函数失败');
