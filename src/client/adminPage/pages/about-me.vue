@@ -6,7 +6,8 @@
     <div class="panel-body">
       <mark-down :mode="2" :initialValue="md" :intervar="100" v-on:on-save="getContent"></mark-down>
       <div style="margin-top: 20px; float: right">
-        <p v-show="updateErr">*更新失败，请重试！</p>
+        <p v-show="updateErr" class="err">*更新失败，请重试！</p>
+        <p v-show="updateSuc" class="suc">更新成功</p>
         <button class="btn btn-success" type="button" @click="update">更新</button>
       </div>
     </div>
@@ -22,7 +23,8 @@
       return {
         md: '',
         html: '',
-        updateErr: false
+        updateErr: false,
+        updateSuc: false
       }
     },
     methods: {
@@ -33,6 +35,12 @@
       update () {
         this.$http.post('/data/updateAboutMe', {about_me_md: this.md, about_me_html: this.html}).then(res => {
           this.updateErr = res.body.updateErr
+          if (this.updateErr === false) {
+            this.updateSuc = true
+            setTimeout(() => {
+              this.updateSuc = false
+            }, 5000)
+          }
         }, res => {
           this.updateErr = true
         })
@@ -52,8 +60,13 @@
 
 <style scoped>
 p{
-  color: red;
   text-align: right;
   font-size: 10px;
 }
+  .err{
+    color: red;
+  }
+  .suc{
+    color: green;
+  }
 </style>
